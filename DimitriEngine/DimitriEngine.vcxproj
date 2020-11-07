@@ -99,12 +99,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -132,14 +132,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -148,13 +149,18 @@
     <ClCompile Include="Renderer\backend.cpp" />
     <ClCompile Include="Renderer\InputSystem\InputSystem.cpp" />
     <ClCompile Include="Renderer\OpenGL\glad.c" />
+    <ClCompile Include="Renderer\OpenGL\object.cpp" />
     <ClCompile Include="Renderer\OpenGL\OpenGLRenderer.cpp" />
+    <ClCompile Include="Renderer\OpenGL\shader.cpp" />
     <ClCompile Include="Renderer\OpenGL\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer\backend.h" />
+    <ClInclude Include="Renderer\BackEndType.h" />
     <ClInclude Include="Renderer\InputSystem\InputSystem.h" />
+    <ClInclude Include="Renderer\OpenGL\object.h" />
     <ClInclude Include="Renderer\OpenGL\OpenGLRenderer.h" />
+    <ClInclude Include="Renderer\OpenGL\shader.h" />
     <ClInclude Include="Renderer\OpenGL\window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

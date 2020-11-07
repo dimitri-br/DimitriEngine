@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glad/glad.h> // OpenGL loader
+#include <glad/glad.h>
 #include <GLFW/glfw3.h> // OpenGL windowing
 
 #include <cstdlib>	//cstrings

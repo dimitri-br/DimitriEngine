@@ -8,13 +8,13 @@ namespace Rendering {
 	{
 	public:
 		// Pointer to window so we can read input events
-		Window* window;
+		Window window;
 
 		// This function just checks whether or not we should exit
 		void ProcessInputs();
 		
 		// Sets the window pointer
-		void SetWindow(Window* windowContext);
+		void SetWindow(Window windowContext);
 
 		// Function to globally read a keys value
 		bool GetKeyDown(int KeyCode);

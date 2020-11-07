@@ -1,20 +1,15 @@
 #pragma once
 
+#include "BackEndType.h"
 #include "OpenGL/OpenGLRenderer.h"
 #include "InputSystem/InputSystem.h"
+#include "OpenGL/object.h"
 
 using OpenGL::OpenGLRenderer;
 
 
 // namespace Rendering holds all render processes that are global to every renderer
 namespace Rendering {
-
-	// BackEndType specifies what graphics API to use (default is OpenGL)
-	enum BackEndType {
-		OpenGL,
-		Vulkan,
-		DirectX
-	};
 
 	// BackEnd holds vital information to not only share information between the engine and renderer, but also
 	// controls the render process
