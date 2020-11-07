@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Renderer">
+      <UniqueIdentifier>{6d179e8f-80c4-4497-aa2e-8ebcd71f3209}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer">
+      <UniqueIdentifier>{bbe29e91-1038-4e9b-bb98-daaa78a57aed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer\OpenGL">
+      <UniqueIdentifier>{7a50a893-e487-4256-8051-afbc84a4b544}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\OpenGL">
+      <UniqueIdentifier>{aaaf58db-c118-43fe-ba54-53c8348c86b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\InputSystem">
+      <UniqueIdentifier>{ce6cdb12-6774-44ad-b6c8-a3b329fd4641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer\InputSystem">
+      <UniqueIdentifier>{d1ef98b3-879d-4b3a-8950-945cce58a0b6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\backend.cpp">
+      <Filter>Source Files\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\OpenGL\window.cpp">
+      <Filter>Source Files\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\OpenGL\glad.c">
+      <Filter>Source Files\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\OpenGL\OpenGLRenderer.cpp">
+      <Filter>Source Files\Renderer\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\InputSystem\InputSystem.cpp">
+      <Filter>Source Files\Renderer\InputSystem</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Renderer\backend.h">
+      <Filter>Header Files\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\OpenGL\window.h">
+      <Filter>Header Files\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\OpenGL\OpenGLRenderer.h">
+      <Filter>Header Files\Renderer\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\InputSystem\InputSystem.h">
+      <Filter>Header Files\Renderer\InputSystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
