@@ -1,20 +1,28 @@
 #include "shader.h"
 
+#include <fstream>
+
 void OpenGL::Shader::LoadShader(std::string VertPath, std::string FragPath)
 {
-    VertShaderSource = "#version 330 core\n"
-        "layout (location = 0) in vec3 aPos;\n"
-        "void main()\n"
-        "{\n"
-        "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-        "}\0";
+    std::ifstream t(VertPath);
+    t.seekg(0, std::ios::end);
+    size_t size = t.tellg();
+    std::string buffer(size, ' ');
+    t.seekg(0);
+    t.read(&buffer[0], size);
 
-    FragShaderSource = "#version 330 core\n"
-        "out vec4 FragColor;\n"
-        "void main()\n"
-        "{\n"
-        "    FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-        "}\0";
+    VertShaderSource = buffer;
+
+    t = std::ifstream(FragPath);
+    t.seekg(0, std::ios::end);
+    size = t.tellg();
+    buffer = std::string(size, ' ');
+    t.seekg(0);
+    t.read(&buffer[0], size);
+
+    FragShaderSource = buffer;
+
+    printf("Successfully loaded shaders!\n");
 }
 
 void OpenGL::Shader::GenerateShader()

@@ -3,7 +3,11 @@ using Rendering::BackEnd;
 using Rendering::BackEndType;
 
 
-BackEnd::BackEnd(BackEndType backEndType) {
+BackEnd::BackEnd(BackEndType _backEndType) {
+
+	backEndType = _backEndType;
+
+
 	switch (backEndType) {
 	case BackEndType::OpenGL:
 		std::cout << "BACKEND: Using OpenGL" << std::endl;
@@ -72,33 +76,90 @@ void BackEnd::SetupInputSystem() {
 }
 
 void BackEnd::MainLoop() {
+	OpenGL::Projection projection = OpenGL::Projection(openGLRenderer);
+
 	OpenGL::Object obj = OpenGL::Object(openGLRenderer, backEndType);
-	std::vector<float> verticies = {
-	 0.5f,  0.5f, 0.0f,  // top right
-	 0.5f, -0.5f, 0.0f,  // bottom right
-	-0.5f, -0.5f, 0.0f,  // bottom left
-	-0.5f,  0.5f, 0.0f   // top left 
+
+	std::vector<float> vertices = {
+	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+	 0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+	-0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+	-0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+	 0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+	 0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+	 0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+	-0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+	-0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+	 0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+	 0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+	-0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+	-0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 	};
 
-	std::vector<int> indices = {  // note that we start from 0!
+	std::vector<unsigned int> indices = {  // note that we start from 0!
 		0, 1, 3,   // first triangle
 		1, 2, 3    // second triangle
 	};
 
-	obj.BindVerticies(verticies);
+
+
+	obj.BindVerticies(vertices);
 	obj.BindIndicies(indices);
+	obj.BindTexture("./Textures/container.jpg");
 	obj.BuildObject();
-	openGLRenderer.GetWindow().SetClearColor(0.1f, 0.5f, 0.5f, 1.0f);
+
+	obj.SetTransform(glm::vec3(0.0f, 0.0f, 0.0f) , glm::vec3(0, 0, 1), glm::vec3(1.0f, 1.0f, 1.0f));
+
+	openGLRenderer.GetWindow().SetClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	while (!openGLRenderer.GetWindow().CheckClose()) {
-		
+		float nowTime = glfwGetTime();
+
 		openGLRenderer.Update();
 
+		obj.SetRotation(15 * DeltaTime, glm::vec3(1, 0, 1));
+
 		obj.Draw();
+
 
 		inputSystem.ProcessInputs();
 
 		glfwPollEvents();
+
+		// Calculate deltatime - time taken per frame
+		
+		float endTime = glfwGetTime();
+
+		DeltaTime = endTime - nowTime;
+		std::cout << DeltaTime << "\n";
 	}
 
 	obj.Exit();

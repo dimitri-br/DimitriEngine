@@ -8,6 +8,8 @@ namespace OpenGL {
 		// Initialize the renderer
 		void init();
 
+		void SetDefaults();
+
 		// Update the renderer - including windows, shaders etc
 		void Update();
 
@@ -18,7 +20,8 @@ namespace OpenGL {
 		unsigned int GetShaderProgram();
 		Window GetWindow();
 
-
+		// These should not be exposed in any way to the user
+		Shader shader;
 
 	private:
 		// Create a new window
@@ -27,8 +30,7 @@ namespace OpenGL {
 
 
 
-		// These should not be exposed in any way to the user
-		Shader shader;
+
 		// Attached window object
 		Window window;
 	};

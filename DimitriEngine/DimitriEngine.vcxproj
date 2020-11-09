@@ -99,7 +99,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\stb-master;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,7 +132,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\stb-master;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
@@ -151,6 +151,7 @@
     <ClCompile Include="Renderer\OpenGL\glad.c" />
     <ClCompile Include="Renderer\OpenGL\object.cpp" />
     <ClCompile Include="Renderer\OpenGL\OpenGLRenderer.cpp" />
+    <ClCompile Include="Renderer\OpenGL\projection.cpp" />
     <ClCompile Include="Renderer\OpenGL\shader.cpp" />
     <ClCompile Include="Renderer\OpenGL\window.cpp" />
   </ItemGroup>
@@ -160,6 +161,7 @@
     <ClInclude Include="Renderer\InputSystem\InputSystem.h" />
     <ClInclude Include="Renderer\OpenGL\object.h" />
     <ClInclude Include="Renderer\OpenGL\OpenGLRenderer.h" />
+    <ClInclude Include="Renderer\OpenGL\projection.h" />
     <ClInclude Include="Renderer\OpenGL\shader.h" />
     <ClInclude Include="Renderer\OpenGL\window.h" />
   </ItemGroup>

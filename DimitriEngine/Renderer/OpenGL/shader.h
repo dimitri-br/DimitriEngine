@@ -8,6 +8,7 @@ namespace OpenGL {
 	public:
 		unsigned int ShaderProgram;
 
+
 		void LoadShader(std::string VertPath, std::string FragPath);
 
 		void GenerateShader();

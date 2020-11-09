@@ -4,6 +4,11 @@
 #include "OpenGL/OpenGLRenderer.h"
 #include "InputSystem/InputSystem.h"
 #include "OpenGL/object.h"
+#include "OpenGL/projection.h"
+
+
+#include <chrono>
+
 
 using OpenGL::OpenGLRenderer;
 
@@ -16,6 +21,8 @@ namespace Rendering {
 	class BackEnd
 	{
 	public:
+		float DeltaTime;
+
 		BackEndType backEndType;
 
 		OpenGLRenderer openGLRenderer;

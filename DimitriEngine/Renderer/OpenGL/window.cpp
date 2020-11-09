@@ -32,6 +32,7 @@ void Window::SetupWindow()
 
 void Window::SwapWindowBuffers() {
 	glfwSwapBuffers(window);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 GLFWwindow* Window::GetWindow() {
@@ -56,5 +57,5 @@ void Window::CloseWindow(bool value) {
 
 void Window::SetClearColor(float r, float g, float b, float a) {
 	glClearColor(r, g, b, a);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
