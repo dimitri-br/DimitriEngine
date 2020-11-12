@@ -15,7 +15,9 @@ namespace OpenGL {
 		OpenGLRenderer openGLRenderer;
 
 	public:
-		Projection(OpenGLRenderer _openGLRenderer);
+		Projection();
+
+		void Initialize(OpenGLRenderer _openGLRenderer);
 
 		void UpdateView(glm::vec3 newPos);
 

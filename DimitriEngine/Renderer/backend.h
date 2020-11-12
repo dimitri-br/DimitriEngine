@@ -30,10 +30,12 @@ namespace Rendering {
 		InputSystem inputSystem;
 
 		// Create a new instance of a backend, using the type specified in the constructor
-		BackEnd(BackEndType backEndType);
+		BackEnd();
 
 		// Loop until exit
 		void MainLoop();
+
+		void Initialize(BackEndType _backEndType);
 
 	private:
 		// Setup the backend renderer and windowing

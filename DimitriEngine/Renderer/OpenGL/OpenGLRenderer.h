@@ -1,12 +1,16 @@
 #pragma once
-#include "window.h"
+#include "../window.h"
 #include "shader.h"
+#include "../BackEndType.h"
+
+using Rendering::BackEndType;
 
 namespace OpenGL {
 	class OpenGLRenderer {
 	public:
 		// Initialize the renderer
-		void init();
+
+		void Initialize();
 
 		void SetDefaults();
 
@@ -18,7 +22,7 @@ namespace OpenGL {
 
 
 		unsigned int GetShaderProgram();
-		Window GetWindow();
+		Rendering::Window GetWindow();
 
 		// These should not be exposed in any way to the user
 		Shader shader;
@@ -32,6 +36,6 @@ namespace OpenGL {
 
 
 		// Attached window object
-		Window window;
+		Rendering::Window window;
 	};
 }

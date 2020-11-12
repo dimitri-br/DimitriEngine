@@ -1,6 +1,6 @@
 #include "projection.h"
 
-OpenGL::Projection::Projection(OpenGLRenderer _openGLRenderer)
+void OpenGL::Projection::Initialize(OpenGLRenderer _openGLRenderer)
 {
 	openGLRenderer = _openGLRenderer;
 

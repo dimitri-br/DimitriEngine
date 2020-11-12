@@ -6,7 +6,8 @@ using Rendering::BackEnd;
 using Rendering::BackEndType;
 
 int main() {
-	BackEnd backEnd = BackEnd(BackEndType::Vulkan);
+	BackEnd backEnd;
+	backEnd.Initialize(BackEndType::OpenGL);
 
 	std::cout << "Initialized engine!" << std::endl;
 

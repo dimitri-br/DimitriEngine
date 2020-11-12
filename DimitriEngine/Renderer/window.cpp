@@ -1,12 +1,35 @@
 #include "window.h"
 
-using OpenGL::Window;
+using Rendering::Window;
 
+
+Rendering::Window::Window(Rendering::BackEndType _backEndType)
+{
+	backEndType = _backEndType;
+	SetupWindow();
+}
 
 void Window::SetupWindow()
 {
-	glfwInit();
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	
+	switch (backEndType) {
+	case BackEndType::OpenGL:
+		glfwInit();
+		LoadOpenGL();
+	case BackEndType::Vulkan:
+		glfwInit();
+		LoadVulkan();
+	case BackEndType::DirectX:
+		LoadOpenGL();
+	default:
+		glfwInit();
+		LoadOpenGL();
+	};
+
+}
+
+void Rendering::Window::LoadOpenGL(){
+		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
@@ -30,32 +53,36 @@ void Window::SetupWindow()
 	}
 }
 
-void Window::SwapWindowBuffers() {
+void Rendering::Window::LoadVulkan() {
+
+}
+
+void Rendering::Window::SwapWindowBuffers() {
 	glfwSwapBuffers(window);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-GLFWwindow* Window::GetWindow() {
+GLFWwindow* Rendering::Window::GetWindow() {
 	return window;
 }
 
-int Window::CheckKey(int keycode) {
+int Rendering::Window::CheckKey(int keycode) {
 	return glfwGetKey(window, keycode);
 }
-void Window::Exit() {
+void Rendering::Window::Exit() {
 	glfwDestroyWindow(window);
 	glfwTerminate();
 }
 
-bool Window::CheckClose() {
+bool Rendering::Window::CheckClose() {
 	return glfwWindowShouldClose(window);
 }
 
-void Window::CloseWindow(bool value) {
+void Rendering::Window::CloseWindow(bool value) {
 	glfwSetWindowShouldClose(window, value);
 }
 
-void Window::SetClearColor(float r, float g, float b, float a) {
+void Rendering::Window::SetClearColor(float r, float g, float b, float a) {
 	glClearColor(r, g, b, a);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }

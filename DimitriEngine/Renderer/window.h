@@ -5,8 +5,9 @@
 
 #include <cstdlib>	//cstrings
 #include <iostream> // IO stream (input/output)
+#include "BackEndType.h"
 
-namespace OpenGL{
+namespace Rendering {
 	// Function to resize the window at runtime
 	void static framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	{
@@ -17,6 +18,13 @@ namespace OpenGL{
 	class Window
 	{
 	public:
+		// Window constructor
+		Window(Rendering::BackEndType _backEndType);
+
+		void LoadOpenGL();
+
+		void LoadVulkan();
+
 		// Setup for the window - sets initial values
 		void SetupWindow();
 
@@ -43,6 +51,8 @@ namespace OpenGL{
 
 	private:
 		GLFWwindow* window;
+
+		Rendering::BackEndType backEndType;
 	};
 }
 

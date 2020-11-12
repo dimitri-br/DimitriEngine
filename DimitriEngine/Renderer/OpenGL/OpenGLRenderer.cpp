@@ -1,11 +1,8 @@
 #include "OpenGLRenderer.h"
 
-
-void OpenGL::OpenGLRenderer::init()
-{
+void OpenGL::OpenGLRenderer::Initialize() {
 	CreateWindow();
 	CreateShaders();
-
 	SetDefaults();
 }
 
@@ -15,9 +12,7 @@ void OpenGL::OpenGLRenderer::SetDefaults() {
 
 void OpenGL::OpenGLRenderer::CreateWindow()
 {
-	window = Window();
-
-	window.SetupWindow();
+	window = Rendering::Window(BackEndType::OpenGL);
 }
 
 void OpenGL::OpenGLRenderer::CreateShaders() 
@@ -43,6 +38,6 @@ unsigned int OpenGL::OpenGLRenderer::GetShaderProgram(){
 	return shader.ShaderProgram;
 }
 
-OpenGL::Window OpenGL::OpenGLRenderer::GetWindow() {
+Rendering::Window OpenGL::OpenGLRenderer::GetWindow() {
 	return window;
 }

@@ -21,7 +21,9 @@ namespace OpenGL {
 		glm::mat4 transform;
 
 		// Constructor method
-		Object(OpenGLRenderer openGLRenderer, BackEndType type);
+		Object();
+
+		void Initialize(OpenGLRenderer _openGLRenderer, Rendering::BackEndType _type);
 
 		// Function to build the object by allocating the buffers and arrays
 		void BuildObject();

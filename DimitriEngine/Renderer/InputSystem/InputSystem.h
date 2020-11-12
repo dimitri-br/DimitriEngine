@@ -1,7 +1,7 @@
 #pragma once
-#include "../OpenGL/window.h"
+#include "../window.h"
 
-using OpenGL::Window;
+using Rendering::Window;
 
 namespace Rendering {
 	class InputSystem
@@ -9,6 +9,8 @@ namespace Rendering {
 	public:
 		// Pointer to window so we can read input events
 		Window window;
+
+		InputSystem();
 
 		// This function just checks whether or not we should exit
 		void ProcessInputs();

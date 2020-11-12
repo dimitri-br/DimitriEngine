@@ -3,7 +3,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-OpenGL::Object::Object(OpenGLRenderer _openGLRenderer, Rendering::BackEndType _type)
+void OpenGL::Object::Initialize(OpenGLRenderer _openGLRenderer, Rendering::BackEndType _type)
 {
 	openGLRenderer = _openGLRenderer;
 	type = _type;

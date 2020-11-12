@@ -3,7 +3,7 @@ using Rendering::BackEnd;
 using Rendering::BackEndType;
 
 
-BackEnd::BackEnd(BackEndType _backEndType) {
+void BackEnd::Initialize(BackEndType _backEndType){
 
 	backEndType = _backEndType;
 
@@ -47,7 +47,7 @@ void BackEnd::SetupGraphics()
 
 	default:
 		std::cout << "Setting up OpenGL Window" << std::endl;
-		openGLRenderer.init();
+		openGLRenderer.Initialize();
 		break;
 	};
 	std::cout << "Set up Window correctly" << std::endl;
@@ -55,6 +55,7 @@ void BackEnd::SetupGraphics()
 }
 
 void BackEnd::SetupInputSystem() {
+
 	// setup the input system 
 	std::cout << "Setting up Input System" << std::endl;
 	switch (backEndType) {
@@ -76,9 +77,11 @@ void BackEnd::SetupInputSystem() {
 }
 
 void BackEnd::MainLoop() {
-	OpenGL::Projection projection = OpenGL::Projection(openGLRenderer);
+	OpenGL::Projection projection;
+	projection.Initialize(openGLRenderer);
 
-	OpenGL::Object obj = OpenGL::Object(openGLRenderer, backEndType);
+	OpenGL::Object obj;
+	obj.Initialize(openGLRenderer, backEndType);
 
 	std::vector<float> vertices = {
 	-0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
