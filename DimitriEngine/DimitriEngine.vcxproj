@@ -147,22 +147,26 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Renderer\backend.cpp" />
+    <ClCompile Include="Renderer\Camera\Camera.cpp" />
     <ClCompile Include="Renderer\InputSystem\InputSystem.cpp" />
     <ClCompile Include="Renderer\OpenGL\glad.c" />
     <ClCompile Include="Renderer\OpenGL\object.cpp" />
     <ClCompile Include="Renderer\OpenGL\OpenGLRenderer.cpp" />
     <ClCompile Include="Renderer\OpenGL\projection.cpp" />
     <ClCompile Include="Renderer\OpenGL\shader.cpp" />
+    <ClCompile Include="Renderer\Transform\Transform.cpp" />
     <ClCompile Include="Renderer\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer\backend.h" />
     <ClInclude Include="Renderer\BackEndType.h" />
+    <ClInclude Include="Renderer\Camera\Camera.h" />
     <ClInclude Include="Renderer\InputSystem\InputSystem.h" />
     <ClInclude Include="Renderer\OpenGL\object.h" />
     <ClInclude Include="Renderer\OpenGL\OpenGLRenderer.h" />
     <ClInclude Include="Renderer\OpenGL\projection.h" />
     <ClInclude Include="Renderer\OpenGL\shader.h" />
+    <ClInclude Include="Renderer\Transform\Transform.h" />
     <ClInclude Include="Renderer\window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,5 +1,9 @@
 #include "projection.h"
 
+OpenGL::Projection::Projection()
+{
+}
+
 void OpenGL::Projection::Initialize(OpenGLRenderer _openGLRenderer)
 {
 	openGLRenderer = _openGLRenderer;
@@ -51,4 +55,10 @@ void OpenGL::Projection::UpdateProjection(float FOV, float centerPoint, float cu
 
 	int projectionLoc = glGetUniformLocation(openGLRenderer.GetShaderProgram(), "projection");
 	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+}
+
+void OpenGL::Projection::SetRawView(glm::mat4 newView) {
+	view = newView;
+	int viewLoc = glGetUniformLocation(openGLRenderer.GetShaderProgram(), "view");
+	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 }

@@ -3,6 +3,10 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
+OpenGL::Object::Object()
+{
+}
+
 void OpenGL::Object::Initialize(OpenGLRenderer _openGLRenderer, Rendering::BackEndType _type)
 {
 	openGLRenderer = _openGLRenderer;
@@ -29,14 +33,17 @@ void OpenGL::Object::BuildObject()
 	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(vertices), &vertices.front(), GL_STATIC_DRAW);
 
 	// 3. copy our index array in a element buffer for OpenGL to use
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(indices), &indices.front(), GL_STATIC_DRAW);
+	if (UseIndexBuffer) {
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(indices), &indices.front(), GL_STATIC_DRAW);
+	}
 
 
 	// 4. then set the vertex attributes pointers
 	// position attribute
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
+
 	// texture coord attribute
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
@@ -56,8 +63,9 @@ void OpenGL::Object::BindVerticies(std::vector<float> verticesVec)
 }
 
 
-void OpenGL::Object::BindIndicies(std::vector<unsigned int> indicesVec)
+void OpenGL::Object::BindIndicies(std::vector<unsigned int> indicesVec, bool useIndexBuffer)
 {
+	UseIndexBuffer = useIndexBuffer;
 	indices = indicesVec;
 }
 
@@ -97,12 +105,18 @@ void OpenGL::Object::Draw()
 	{
 		// Send transform buffer as a uniform to the shader
 		unsigned int transformLoc = glGetUniformLocation(openGLRenderer.GetShaderProgram(), "transform");
-		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+		glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform.GetTransform()));
 
 		glBindTexture(GL_TEXTURE_2D, AlbedoTexture);
 		glBindVertexArray(VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-		//glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0); // Draw the vertex using the EBO - element buffer
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+		
+		if (UseIndexBuffer) {
+			glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0); // Draw the vertex using the EBO - element buffer
+		}
+		else {
+			glDrawArrays(GL_TRIANGLES, 0, vertices.size());
+		}
+
 		glBindVertexArray(0); // no need to unbind it every time - but good to avoid overwriting
 		break;
 	}
@@ -118,29 +132,5 @@ void OpenGL::Object::Exit()
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);
 	glDeleteBuffers(1, &EBO);
-}
-
-void OpenGL::Object::SetPosition(glm::vec3 pos)
-{
-	transform = glm::translate(transform, pos);
-}
-
-void OpenGL::Object::SetRotation(float angle, glm::vec3 rotAxis)
-{
-	transform = glm::rotate(transform, glm::radians(angle), rotAxis);
-}
-
-void OpenGL::Object::SetScale(glm::vec3 scale)
-{
-	transform = glm::scale(transform, scale);
-}
-
-void OpenGL::Object::SetTransform(glm::vec3 pos, glm::vec3 rot, glm::vec3 scale)
-{
-	transform = glm::mat4(1.0f);
-	transform = glm::translate(transform, pos);
-	transform = glm::rotate(transform, glm::radians(90.0f), rot);
-	transform = glm::scale(transform, scale);
-	printf("Set transform!\n");
 }
 

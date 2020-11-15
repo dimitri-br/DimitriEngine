@@ -5,13 +5,12 @@
 #include "InputSystem/InputSystem.h"
 #include "OpenGL/object.h"
 #include "OpenGL/projection.h"
-
+#include "Camera/Camera.h"
 
 #include <chrono>
 
 
 using OpenGL::OpenGLRenderer;
-
 
 // namespace Rendering holds all render processes that are global to every renderer
 namespace Rendering {
@@ -21,16 +20,19 @@ namespace Rendering {
 	class BackEnd
 	{
 	public:
+
+		BackEnd();
+
 		float DeltaTime;
 
 		BackEndType backEndType;
 
 		OpenGLRenderer openGLRenderer;
 
-		InputSystem inputSystem;
+		DimitriEngine::InputSystem inputSystem;
+		DimitriEngine::Camera camera;
 
 		// Create a new instance of a backend, using the type specified in the constructor
-		BackEnd();
 
 		// Loop until exit
 		void MainLoop();

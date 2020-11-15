@@ -7,6 +7,8 @@ void BackEnd::Initialize(BackEndType _backEndType){
 
 	backEndType = _backEndType;
 
+	camera = DimitriEngine::Camera();
+	camera.SetCamTransform(glm::vec3(0, 0, 10));
 
 	switch (backEndType) {
 	case BackEndType::OpenGL:
@@ -76,6 +78,10 @@ void BackEnd::SetupInputSystem() {
 
 }
 
+Rendering::BackEnd::BackEnd()
+{
+}
+
 void BackEnd::MainLoop() {
 	OpenGL::Projection projection;
 	projection.Initialize(openGLRenderer);
@@ -135,25 +141,29 @@ void BackEnd::MainLoop() {
 
 
 	obj.BindVerticies(vertices);
-	obj.BindIndicies(indices);
+	obj.BindIndicies(indices, false);
 	obj.BindTexture("./Textures/container.jpg");
 	obj.BuildObject();
 
-	obj.SetTransform(glm::vec3(0.0f, 0.0f, 0.0f) , glm::vec3(0, 0, 1), glm::vec3(1.0f, 1.0f, 1.0f));
+	obj.transform.position = glm::vec3(0.0f, 0.0f, 0.0f);
+	obj.transform.rotation = glm::vec3(0, 0, 0);
+	obj.transform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
 
 	openGLRenderer.GetWindow().SetClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
 	while (!openGLRenderer.GetWindow().CheckClose()) {
 		float nowTime = glfwGetTime();
 
+
+
 		openGLRenderer.Update();
 
-		obj.SetRotation(15 * DeltaTime, glm::vec3(1, 0, 1));
+		inputSystem.ProcessInputs();
+		camera.HandleInput(inputSystem);
+		camera.Update();
+		projection.SetRawView(camera.CamView);
 
 		obj.Draw();
-
-
-		inputSystem.ProcessInputs();
 
 		glfwPollEvents();
 
@@ -162,7 +172,6 @@ void BackEnd::MainLoop() {
 		float endTime = glfwGetTime();
 
 		DeltaTime = endTime - nowTime;
-		std::cout << DeltaTime << "\n";
 	}
 
 	obj.Exit();

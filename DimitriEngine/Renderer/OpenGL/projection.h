@@ -15,6 +15,7 @@ namespace OpenGL {
 		OpenGLRenderer openGLRenderer;
 
 	public:
+
 		Projection();
 
 		void Initialize(OpenGLRenderer _openGLRenderer);
@@ -24,5 +25,6 @@ namespace OpenGL {
 		void UpdateModel(float angle, glm::vec3 rotPos);
 
 		void UpdateProjection(float FOV, float centerPoint, float cullMin, float cullMax);
+		void SetRawView(glm::mat4 newView);
 	};
 }

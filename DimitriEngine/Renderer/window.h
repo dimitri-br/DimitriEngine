@@ -6,27 +6,30 @@
 #include <cstdlib>	//cstrings
 #include <iostream> // IO stream (input/output)
 #include "BackEndType.h"
+#include <glm/glm.hpp>
 
 namespace Rendering {
 	// Function to resize the window at runtime
+
 	void static framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	{
 		glViewport(0, 0, width, height);
 	}
 
+	void static mouse_callback(GLFWwindow* window, double xpos, double ypos);
+
 	// Window class for the OpenGL backend. This class controls all window activities for the engine.
+
 	class Window
 	{
 	public:
 		// Window constructor
-		Window(Rendering::BackEndType _backEndType);
+		Window();
 
 		void LoadOpenGL();
 
 		void LoadVulkan();
 
-		// Setup for the window - sets initial values
-		void SetupWindow();
 
 		// Needed to display and update the screen
 		void SwapWindowBuffers();
@@ -48,6 +51,10 @@ namespace Rendering {
 
 		// Safely close and exit the window
 		void Exit();
+
+		glm::vec2 MousePos;
+
+		glm::vec2 GetMousePos();
 
 	private:
 		GLFWwindow* window;

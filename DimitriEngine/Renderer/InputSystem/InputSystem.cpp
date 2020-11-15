@@ -1,12 +1,19 @@
 #include "InputSystem.h"
 
-void Rendering::InputSystem::ProcessInputs()
+DimitriEngine::InputSystem::InputSystem()
+{
+}
+
+void DimitriEngine::InputSystem::ProcessInputs()
 {
 	if (GetKeyDown(GLFW_KEY_ESCAPE))
 		window.CloseWindow(true);
+	
+	MouseInput = window.GetMousePos();
+	std::cout << "Got mouse input (inputsystem)! X: " << MouseInput.x << " Y: " << MouseInput.y << std::endl;
 }
 
-bool Rendering::InputSystem::GetKeyDown(int KeyCode) {
+bool DimitriEngine::InputSystem::GetKeyDown(int KeyCode) {
 
 	if (window.CheckKey(KeyCode) == GLFW_PRESS)
 		return true;
@@ -14,6 +21,13 @@ bool Rendering::InputSystem::GetKeyDown(int KeyCode) {
 		return false;
 }
 
-void Rendering::InputSystem::SetWindow(Window windowContext) {
+glm::vec2 DimitriEngine::InputSystem::GetMouseInput()
+{
+	return MouseInput;
+}
+
+
+
+void DimitriEngine::InputSystem::SetWindow(Window windowContext) {
 	window = windowContext;
 }

@@ -1,9 +1,10 @@
 #pragma once
 #include "../window.h"
+#include <glm/glm.hpp>
 
 using Rendering::Window;
 
-namespace Rendering {
+namespace DimitriEngine {
 	class InputSystem
 	{
 	public:
@@ -20,6 +21,10 @@ namespace Rendering {
 
 		// Function to globally read a keys value
 		bool GetKeyDown(int KeyCode);
+
+		glm::vec2 GetMouseInput();
+
+		glm::vec2 MouseInput;
 	};
 }
 

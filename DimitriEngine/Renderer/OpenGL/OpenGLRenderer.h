@@ -8,6 +8,10 @@ using Rendering::BackEndType;
 namespace OpenGL {
 	class OpenGLRenderer {
 	public:
+
+		OpenGLRenderer();
+
+
 		// Initialize the renderer
 
 		void Initialize();

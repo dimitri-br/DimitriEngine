@@ -14,5 +14,7 @@ int main() {
 	backEnd.MainLoop();
 
 	backEnd.openGLRenderer.Exit();
+	std::cout << "Successfully exit!" << std::endl;
+
 	return 0;
 }
