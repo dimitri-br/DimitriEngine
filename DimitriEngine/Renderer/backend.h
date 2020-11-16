@@ -6,6 +6,7 @@
 #include "OpenGL/object.h"
 #include "OpenGL/projection.h"
 #include "Camera/Camera.h"
+#include "Timing/Time.h"
 
 #include <chrono>
 

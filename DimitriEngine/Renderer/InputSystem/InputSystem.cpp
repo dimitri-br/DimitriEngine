@@ -10,7 +10,6 @@ void DimitriEngine::InputSystem::ProcessInputs()
 		window.CloseWindow(true);
 	
 	MouseInput = window.GetMousePos();
-	std::cout << "Got mouse input (inputsystem)! X: " << MouseInput.x << " Y: " << MouseInput.y << std::endl;
 }
 
 bool DimitriEngine::InputSystem::GetKeyDown(int KeyCode) {

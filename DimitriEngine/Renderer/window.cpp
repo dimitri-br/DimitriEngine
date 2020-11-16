@@ -5,10 +5,11 @@ using Rendering::Window;
 
 Rendering::Window::Window()
 {
-	glfwInit();
+
 }
 
 void Rendering::Window::LoadOpenGL(){
+	glfwInit();
 	backEndType = BackEndType::OpenGL;
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -60,9 +61,12 @@ void Rendering::Window::Exit() {
 
 glm::vec2 Rendering::Window::GetMousePos()
 {
-	std::cout << "Got mouse input (window.GetMousePos())! X: " << MousePos.x << " Y: " << MousePos.y << std::endl;
-
 	return MousePos;
+}
+
+void Rendering::Window::mouseCallback(GLFWwindow* window, double xpos, double ypos)
+{
+	MousePos = glm::vec2(xpos, ypos);
 }
 
 bool Rendering::Window::CheckClose() {
@@ -80,10 +84,7 @@ void Rendering::Window::SetClearColor(float r, float g, float b, float a) {
 
 void Rendering::mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
-	auto app = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
-	app->MousePos = (app->MousePos.length() > 0) ? glm::vec2(xpos, ypos) : app->MousePos;
-
-	glmfw
-
-	std::cout << "Got mouse input (window)! X: " << app->MousePos.x << " Y: " << app->MousePos.y << std::endl;
+	Window* app = (Window*)glfwGetWindowUserPointer(window);
+	app->mouseCallback(window, xpos, ypos);
 }
+

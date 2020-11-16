@@ -43,6 +43,12 @@
     <Filter Include="Header Files\Renderer\Transform">
       <UniqueIdentifier>{3ca8655a-49cc-43d1-84e5-acf999f78a5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Renderer\Timing">
+      <UniqueIdentifier>{dda75543-a9f2-4486-85b9-4140212c1855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer\Timing">
+      <UniqueIdentifier>{78ec4f07-9197-4cb8-970f-cc43313b2a02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -78,6 +84,9 @@
     <ClCompile Include="Renderer\Transform\Transform.cpp">
       <Filter>Source Files\Renderer\Transform</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\Timing\Time.cpp">
+      <Filter>Source Files\Renderer\Timing</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer\backend.h">
@@ -109,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="Renderer\Transform\Transform.h">
       <Filter>Header Files\Renderer\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Timing\Time.h">
+      <Filter>Header Files\Renderer\Timing</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

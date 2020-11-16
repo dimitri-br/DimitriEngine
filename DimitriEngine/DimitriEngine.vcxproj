@@ -154,6 +154,7 @@
     <ClCompile Include="Renderer\OpenGL\OpenGLRenderer.cpp" />
     <ClCompile Include="Renderer\OpenGL\projection.cpp" />
     <ClCompile Include="Renderer\OpenGL\shader.cpp" />
+    <ClCompile Include="Renderer\Timing\Time.cpp" />
     <ClCompile Include="Renderer\Transform\Transform.cpp" />
     <ClCompile Include="Renderer\window.cpp" />
   </ItemGroup>
@@ -166,6 +167,7 @@
     <ClInclude Include="Renderer\OpenGL\OpenGLRenderer.h" />
     <ClInclude Include="Renderer\OpenGL\projection.h" />
     <ClInclude Include="Renderer\OpenGL\shader.h" />
+    <ClInclude Include="Renderer\Timing\Time.h" />
     <ClInclude Include="Renderer\Transform\Transform.h" />
     <ClInclude Include="Renderer\window.h" />
   </ItemGroup>

@@ -7,19 +7,18 @@
 #include <iostream> // IO stream (input/output)
 #include "BackEndType.h"
 #include <glm/glm.hpp>
+#include <chrono>
 
 namespace Rendering {
 	// Function to resize the window at runtime
-
-	void static framebuffer_size_callback(GLFWwindow* window, int width, int height)
+	static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 	{
 		glViewport(0, 0, width, height);
 	}
 
-	void static mouse_callback(GLFWwindow* window, double xpos, double ypos);
+	static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
 	// Window class for the OpenGL backend. This class controls all window activities for the engine.
-
 	class Window
 	{
 	public:
@@ -56,10 +55,12 @@ namespace Rendering {
 
 		glm::vec2 GetMousePos();
 
+		void mouseCallback(GLFWwindow* window, double xpos, double ypos);
 	private:
 		GLFWwindow* window;
 
 		Rendering::BackEndType backEndType;
+
 	};
 }
 

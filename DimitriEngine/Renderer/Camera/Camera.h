@@ -3,6 +3,7 @@
 #include <glm/common.hpp>
 #include <glm\ext\matrix_transform.hpp>
 #include "../InputSystem/InputSystem.h"
+#include "../Timing/Time.h"
 
 
 namespace DimitriEngine {

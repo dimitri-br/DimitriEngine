@@ -1,4 +1,8 @@
 #include "OpenGLRenderer.h"
+#include "../Timing/Time.h"
+
+using DimitriEngine::Time;
+
 
 OpenGL::OpenGLRenderer::OpenGLRenderer()
 {
@@ -8,6 +12,7 @@ void OpenGL::OpenGLRenderer::Initialize() {
 	CreateWindow();
 	CreateShaders();
 	SetDefaults();
+	glfwSetErrorCallback(error_callback);
 }
 
 void OpenGL::OpenGLRenderer::SetDefaults() {
@@ -45,3 +50,6 @@ unsigned int OpenGL::OpenGLRenderer::GetShaderProgram(){
 Rendering::Window OpenGL::OpenGLRenderer::GetWindow() {
 	return window;
 }
+
+
+
