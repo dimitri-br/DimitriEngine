@@ -1,6 +1,6 @@
 #pragma once
 
-#include "OpenGLRenderer.h";
+#include "../OpenGL/OpenGLRenderer.h";
 #include "../backend.h"
 #include "../Transform/Transform.h"
 #include <vector>
@@ -12,8 +12,9 @@
 
 using Rendering::BackEndType;
 using DimitriEngine::Transform;
+using OpenGL::OpenGLRenderer;
 
-namespace OpenGL {
+namespace DimitriEngine {
 	// Object class. This class controls all things to do with objects, including the model, transformation, textures and more!
 	class Object
 	{
@@ -23,6 +24,7 @@ namespace OpenGL {
 		Transform transform;
 
 		Object();
+		Object(OpenGLRenderer _openGLRenderer, Rendering::BackEndType _type);
 
 		void Initialize(OpenGLRenderer _openGLRenderer, Rendering::BackEndType _type);
 

@@ -49,6 +49,18 @@
     <Filter Include="Header Files\Renderer\Timing">
       <UniqueIdentifier>{78ec4f07-9197-4cb8-970f-cc43313b2a02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Renderer\Object">
+      <UniqueIdentifier>{0be9c781-52fc-470c-a37e-b40e02bb932d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\Object">
+      <UniqueIdentifier>{dedfa25d-fe7b-4c2e-84cb-46eca7c6975b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\Light">
+      <UniqueIdentifier>{2fe3060a-26dd-439b-8c39-fe684dd3558d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer\Light">
+      <UniqueIdentifier>{938d8f4a-2b61-4146-b5a9-05f869958e57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -62,9 +74,6 @@
     </ClCompile>
     <ClCompile Include="Renderer\InputSystem\InputSystem.cpp">
       <Filter>Source Files\Renderer\InputSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Renderer\OpenGL\object.cpp">
-      <Filter>Source Files\Renderer\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="Renderer\OpenGL\glad.c">
       <Filter>Source Files</Filter>
@@ -87,6 +96,12 @@
     <ClCompile Include="Renderer\Timing\Time.cpp">
       <Filter>Source Files\Renderer\Timing</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\Light\Light.cpp">
+      <Filter>Source Files\Renderer\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Object\object.cpp">
+      <Filter>Source Files\Renderer\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer\backend.h">
@@ -97,9 +112,6 @@
     </ClInclude>
     <ClInclude Include="Renderer\InputSystem\InputSystem.h">
       <Filter>Header Files\Renderer\InputSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer\OpenGL\object.h">
-      <Filter>Header Files\Renderer\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="Renderer\OpenGL\shader.h">
       <Filter>Header Files\Renderer\OpenGL</Filter>
@@ -121,6 +133,12 @@
     </ClInclude>
     <ClInclude Include="Renderer\Timing\Time.h">
       <Filter>Header Files\Renderer\Timing</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Object\object.h">
+      <Filter>Header Files\Renderer\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Light\Light.h">
+      <Filter>Header Files\Renderer\Light</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

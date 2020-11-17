@@ -88,8 +88,10 @@ void BackEnd::MainLoop() {
 	OpenGL::Projection projection;
 	projection.Initialize(openGLRenderer);
 
-	OpenGL::Object obj;
-	obj.Initialize(openGLRenderer, backEndType);
+	DimitriEngine::Object obj(openGLRenderer, backEndType);
+	DimitriEngine::Light(Transform(glm::vec3(10, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1.0f)));
+
+	
 
 	std::vector<float> vertices = {
 		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,

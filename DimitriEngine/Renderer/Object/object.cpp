@@ -3,18 +3,18 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 
-OpenGL::Object::Object()
+DimitriEngine::Object::Object()
 {
 }
 
-void OpenGL::Object::Initialize(OpenGLRenderer _openGLRenderer, Rendering::BackEndType _type)
+DimitriEngine::Object::Object(OpenGLRenderer _openGLRenderer, Rendering::BackEndType _type)
 {
 	openGLRenderer = _openGLRenderer;
 	type = _type;
 }
 
 
-void OpenGL::Object::BuildObject()
+void DimitriEngine::Object::BuildObject()
 {
 	// set up vertex data (and buffer(s)) and configure vertex attributes
 	// ------------------------------------------------------------------
@@ -59,19 +59,19 @@ void OpenGL::Object::BuildObject()
 }
 
 
-void OpenGL::Object::BindVerticies(std::vector<float> verticesVec)
+void DimitriEngine::Object::BindVerticies(std::vector<float> verticesVec)
 {
 	vertices = verticesVec;
 }
 
 
-void OpenGL::Object::BindIndicies(std::vector<unsigned int> indicesVec, bool useIndexBuffer)
+void DimitriEngine::Object::BindIndicies(std::vector<unsigned int> indicesVec, bool useIndexBuffer)
 {
 	UseIndexBuffer = useIndexBuffer;
 	indices = indicesVec;
 }
 
-void OpenGL::Object::BindTexture(std::string TexturePath)
+void DimitriEngine::Object::BindTexture(std::string TexturePath)
 {
 
 
@@ -98,7 +98,7 @@ void OpenGL::Object::BindTexture(std::string TexturePath)
 }
 
 
-void OpenGL::Object::Draw() 
+void DimitriEngine::Object::Draw()
 {
 	
 
@@ -129,7 +129,7 @@ void OpenGL::Object::Draw()
 
 }
 
-void OpenGL::Object::Exit()
+void DimitriEngine::Object::Exit()
 {
 	glDeleteVertexArrays(1, &VAO);
 	glDeleteBuffers(1, &VBO);

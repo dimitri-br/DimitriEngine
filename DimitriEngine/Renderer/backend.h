@@ -3,10 +3,11 @@
 #include "BackEndType.h"
 #include "OpenGL/OpenGLRenderer.h"
 #include "InputSystem/InputSystem.h"
-#include "OpenGL/object.h"
+#include "Object/object.h"
 #include "OpenGL/projection.h"
 #include "Camera/Camera.h"
 #include "Timing/Time.h"
+#include "Light/Light.h"
 
 #include <chrono>
 
