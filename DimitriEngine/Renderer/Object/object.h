@@ -4,6 +4,7 @@
 #include "../backend.h"
 #include "../Transform/Transform.h"
 #include "../Material/Material.h"
+#include "../Texture/Texture.h"
 #include <vector>
 
 // OpenGL math library
@@ -15,6 +16,7 @@
 
 using Rendering::BackEndType;
 using DimitriEngine::Transform;
+using DimitriEngine::Material;
 using OpenGL::OpenGLRenderer;
 
 namespace DimitriEngine {

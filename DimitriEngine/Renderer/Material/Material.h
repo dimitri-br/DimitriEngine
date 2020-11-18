@@ -5,6 +5,7 @@
 
 
 using OpenGL::Shader;
+using namespace DimitriEngine;
 
 namespace DimitriEngine {
 	class Material

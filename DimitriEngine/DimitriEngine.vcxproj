@@ -99,12 +99,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glm;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\stb-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glm\glm;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\lib-vc2019;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\assimp\vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -132,7 +132,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glm;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\stb-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glm\glm;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
@@ -140,7 +140,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\lib-vc2019;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\assimp\vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -157,6 +157,7 @@
     <ClCompile Include="Renderer\OpenGL\OpenGLRenderer.cpp" />
     <ClCompile Include="Renderer\OpenGL\projection.cpp" />
     <ClCompile Include="Renderer\OpenGL\shader.cpp" />
+    <ClCompile Include="Renderer\Texture\Texture.cpp" />
     <ClCompile Include="Renderer\Timing\Time.cpp" />
     <ClCompile Include="Renderer\Transform\Transform.cpp" />
     <ClCompile Include="Renderer\window.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="Renderer\OpenGL\OpenGLRenderer.h" />
     <ClInclude Include="Renderer\OpenGL\projection.h" />
     <ClInclude Include="Renderer\OpenGL\shader.h" />
+    <ClInclude Include="Renderer\Texture\Texture.h" />
     <ClInclude Include="Renderer\Timing\Time.h" />
     <ClInclude Include="Renderer\Transform\Transform.h" />
     <ClInclude Include="Renderer\window.h" />

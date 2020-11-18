@@ -55,8 +55,13 @@ void DimitriEngine::Object::BuildObject()
 	// You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
 	// VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
 	glBindVertexArray(0);
+	std::vector<Texture> textures;
+	Texture albedo;
+	albedo.path = "./textures/container.jpg";
 
-	material = Material("./textures/container.jpg", "./textures/container.jpg", glm::vec3(0.25f));
+	textures.push_back(albedo);
+
+	material = Material(textures, glm::vec3(0.25f));
 }
 
 
