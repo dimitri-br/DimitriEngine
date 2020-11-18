@@ -31,10 +31,10 @@ namespace OpenGL {
 
 
 		unsigned int GetShaderProgram();
+		OpenGL::Shader GetShader();
 		Rendering::Window GetWindow();
 
-		// These should not be exposed in any way to the user
-		Shader shader;
+
 
 	private:
 		// Create a new window
@@ -46,5 +46,8 @@ namespace OpenGL {
 
 		// Attached window object
 		Rendering::Window window;
+
+		// These should not be exposed in any way to the user
+		Shader shader;
 	};
 }

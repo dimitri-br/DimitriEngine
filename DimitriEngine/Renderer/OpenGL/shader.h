@@ -1,5 +1,6 @@
 #pragma once
 #include "../window.h"
+#include <glm/gtc/type_ptr.hpp>
 
 namespace OpenGL {
 	class Shader
@@ -13,22 +14,64 @@ namespace OpenGL {
 
 		void GenerateShader();
 
-		void UseShader();
+		void UseShader() {
+			glUseProgram(ShaderProgram);
+		}
 
-		void BindVec1(std::string loc, glm::vec1 vec);
-		void BindVec2(std::string loc, glm::vec2 vec);
-		void BindVec3(std::string loc, glm::vec3 vec);
-		void BindVec4(std::string loc, glm::vec4 vec);
+		void BindVec1(const std::string &loc, const  glm::vec1 vec) const
+		{
+			glUniform1fv(glGetUniformLocation(ShaderProgram, loc.c_str()), 1, glm::value_ptr(vec));
+		}
 
-		void BindMat2(std::string loc, glm::mat2 mat);
-		void BindMat3(std::string loc, glm::mat3 mat);
-		void BindMat4(std::string loc, glm::mat4 mat);
+		void BindVec2(const std::string &loc, const  glm::vec2 vec) const
+		{
+			glUniform2fv(glGetUniformLocation(ShaderProgram, loc.c_str()), 1, glm::value_ptr(vec));
+		}
 
-		void BindFloat(std::string loc, float value);
-		void BindInt(std::string loc, int value);
-		void BindBool(std::string loc, bool value);
+		void BindVec3(const std::string &loc, const  glm::vec3 vec) const
+		{
+			glUniform3fv(glGetUniformLocation(ShaderProgram, loc.c_str()), 1, glm::value_ptr(vec));
+		}
 
-		void Exit();
+		void BindVec4(const std::string &loc, const  glm::vec4 vec) const
+		{
+			glUniform4fv(glGetUniformLocation(ShaderProgram, loc.c_str()), 1, glm::value_ptr(vec));
+		}
+
+		void BindMat2(const std::string &loc, const  glm::mat2 mat) const
+		{
+			glUniformMatrix2fv(glGetUniformLocation(ShaderProgram, loc.c_str()), 1, GL_FALSE, glm::value_ptr(mat));
+		}
+
+		void BindMat3(const std::string &loc, const  glm::mat3 mat) const
+		{
+			glUniformMatrix3fv(glGetUniformLocation(ShaderProgram, loc.c_str()), 1, GL_FALSE, glm::value_ptr(mat));
+		}
+
+		void BindMat4(const std::string &loc, const  glm::mat4 mat) const
+		{
+			glUniformMatrix4fv(glGetUniformLocation(ShaderProgram, loc.c_str()), 1, GL_FALSE, glm::value_ptr(mat));
+		}
+
+		void BindFloat(const std::string &loc, const float value) const
+		{
+			glUniform1f(glGetUniformLocation(ShaderProgram, loc.c_str()), value);
+		}
+
+		void BindInt(const std::string &loc, const int value) const
+		{
+			glUniform1i(glGetUniformLocation(ShaderProgram, loc.c_str()), value);
+		}
+
+		void BindBool(const std::string &loc, const bool value) const
+		{
+			glUniform1i(glGetUniformLocation(ShaderProgram, loc.c_str()), value);
+		}
+
+		void Exit()
+		{
+			glDeleteProgram(ShaderProgram);
+		}
 
 	private:
 		std::string VertShaderSource;

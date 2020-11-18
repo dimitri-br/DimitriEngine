@@ -99,12 +99,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glm;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\stb-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -132,7 +132,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\include;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glad\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\include;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glm;C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\stb-master;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
@@ -140,7 +140,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Dbgamerstarz\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -150,6 +150,8 @@
     <ClCompile Include="Renderer\Camera\Camera.cpp" />
     <ClCompile Include="Renderer\InputSystem\InputSystem.cpp" />
     <ClCompile Include="Renderer\Light\Light.cpp" />
+    <ClCompile Include="Renderer\Material\Material.cpp" />
+    <ClCompile Include="Renderer\Mesh\Mesh.cpp" />
     <ClCompile Include="Renderer\Object\object.cpp" />
     <ClCompile Include="Renderer\OpenGL\glad.c" />
     <ClCompile Include="Renderer\OpenGL\OpenGLRenderer.cpp" />
@@ -165,6 +167,8 @@
     <ClInclude Include="Renderer\Camera\Camera.h" />
     <ClInclude Include="Renderer\InputSystem\InputSystem.h" />
     <ClInclude Include="Renderer\Light\Light.h" />
+    <ClInclude Include="Renderer\Material\Material.h" />
+    <ClInclude Include="Renderer\Mesh\Mesh.h" />
     <ClInclude Include="Renderer\Object\object.h" />
     <ClInclude Include="Renderer\OpenGL\OpenGLRenderer.h" />
     <ClInclude Include="Renderer\OpenGL\projection.h" />

@@ -146,7 +146,6 @@ void BackEnd::MainLoop() {
 
 	obj.BindVerticies(vertices);
 	obj.BindIndicies(indices, false);
-	obj.BindTexture("./Textures/container.jpg");
 	obj.BuildObject();
 
 	obj.transform.position = glm::vec3(0.0f, 0.0f, 0.0f);

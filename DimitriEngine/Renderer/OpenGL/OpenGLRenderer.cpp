@@ -47,6 +47,10 @@ unsigned int OpenGL::OpenGLRenderer::GetShaderProgram(){
 	return shader.ShaderProgram;
 }
 
+OpenGL::Shader OpenGL::OpenGLRenderer::GetShader() {
+	return shader;
+}
+
 Rendering::Window OpenGL::OpenGLRenderer::GetWindow() {
 	return window;
 }

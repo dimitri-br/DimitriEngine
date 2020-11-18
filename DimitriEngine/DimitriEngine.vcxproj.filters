@@ -61,6 +61,18 @@
     <Filter Include="Header Files\Renderer\Light">
       <UniqueIdentifier>{938d8f4a-2b61-4146-b5a9-05f869958e57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Renderer\Material">
+      <UniqueIdentifier>{1050ed8d-661b-4565-8169-2b90e468708d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer\Material">
+      <UniqueIdentifier>{a77929bd-4a6a-4101-b336-370ac7907b89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\Mesh">
+      <UniqueIdentifier>{978f3731-284b-4f0d-827f-65a8056d4506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer\Mesh">
+      <UniqueIdentifier>{041d4091-d425-4245-b47e-8b7030f649fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -102,6 +114,12 @@
     <ClCompile Include="Renderer\Object\object.cpp">
       <Filter>Source Files\Renderer\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\Material\Material.cpp">
+      <Filter>Source Files\Renderer\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Mesh\Mesh.cpp">
+      <Filter>Source Files\Renderer\Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer\backend.h">
@@ -139,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="Renderer\Light\Light.h">
       <Filter>Header Files\Renderer\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Material\Material.h">
+      <Filter>Header Files\Renderer\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Mesh\Mesh.h">
+      <Filter>Header Files\Renderer\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
