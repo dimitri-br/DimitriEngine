@@ -11,7 +11,7 @@ void BackEnd::Initialize(BackEndType _backEndType){
 	backEndType = _backEndType;
 
 	camera = DimitriEngine::Camera();
-	camera.SetCamTransform(glm::vec3(0, 0, 10));
+	camera.SetCamTransform(glm::vec3(0, 0, 20));
 
 	switch (backEndType) {
 	case BackEndType::OpenGL:
@@ -85,74 +85,53 @@ Rendering::BackEnd::BackEnd()
 }
 
 void BackEnd::MainLoop() {
-	OpenGL::Projection projection;
-	projection.Initialize(openGLRenderer);
+	OpenGL::Projection projection = openGLRenderer.GetProjection();
+	std::vector<DimitriEngine::Light> lights;
 
 	DimitriEngine::Object obj(openGLRenderer, backEndType);
-	DimitriEngine::Light(Transform(glm::vec3(10, 0, 0), glm::vec3(0, 0, 0), glm::vec3(1.0f)));
-
 	
+	DimitriEngine::Light light = DimitriEngine::Light();
+	light.direction = glm::vec3(-0.2f, -1.0f, -0.3f);
+	light.ambient = glm::vec3(1.0f);
+	light.diffuse = glm::vec3(0.8f);
+	light.specular = glm::vec3(1.0f);
+	light.lightType = LIGHT_DIRECTIONAL;
+	lights.push_back(light);
 
-	std::vector<float> vertices = {
-		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-		-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
-		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
-		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-		-0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f,
-
-		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-		-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
-		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
-
-		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
-		 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
-
-		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
-		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
-
-		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
-		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+	glm::vec3 pointLightPositions[] = {
+		glm::vec3(0.7f,  0.2f,  2.0f),
+		glm::vec3(2.3f, -3.3f, -4.0f),
+		glm::vec3(-4.0f,  2.0f, -12.0f),
+		glm::vec3(0.0f,  0.0f, -3.0f)
 	};
 
-	std::vector<unsigned int> indices = {  // note that we start from 0!
-		0, 1, 3,   // first triangle
-		1, 2, 3    // second triangle
-	};
+	for (glm::vec3 pos : pointLightPositions) {
+		DimitriEngine::Light p_light;
+		p_light.position = pos;
+		
+		p_light.ambient = glm::vec3(1.0f);
+		p_light.diffuse = glm::vec3(0.8f);
+		p_light.specular = glm::vec3(1.0f);
 
+		p_light.constant = 1.0f;
+		p_light.linear = 0.09f;
+		p_light.quadratic = 0.032f;
 
+		light.lightType = LIGHT_POINT;
 
-	obj.BindVerticies(vertices);
-	obj.BindIndicies(indices, false);
-	obj.BuildObject();
-
-	obj.transform.position = glm::vec3(0.0f, 0.0f, 0.0f);
-	obj.transform.rotation = glm::vec3(0, 0, 0);
+		lights.push_back(p_light);
+	}
+	obj.transform.position = glm::vec3(0.0f, 0.0f, -5.0f);
+	obj.transform.rotation = glm::vec3(0, 20, 0);
 	obj.transform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
 
-	openGLRenderer.GetWindow().SetClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	Material mat;
+	//mat.color = glm::vec3(1.0, 1.0, 1.0);
+	mat.smoothness = 32.0f;
+	obj.CreateModel("./Models/backpack/backpack.obj", mat);
+
+	openGLRenderer.GetWindow().SetClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
 	while (!openGLRenderer.GetWindow().CheckClose()) {
 		float nowTime = glfwGetTime();
@@ -165,8 +144,8 @@ void BackEnd::MainLoop() {
 		camera.HandleInput(inputSystem);
 		camera.Update();
 		projection.SetRawView(camera.CamView);
-
-		obj.Draw();
+		
+		obj.Update(&camera, lights, &projection);
 
 		glfwPollEvents();
 

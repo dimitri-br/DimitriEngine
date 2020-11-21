@@ -2,6 +2,9 @@
 #include "../window.h"
 #include "shader.h"
 #include "../BackEndType.h"
+#include "../Camera/Camera.h"
+#include "projection.h"
+
 
 using Rendering::BackEndType;
 
@@ -29,17 +32,13 @@ namespace OpenGL {
 		//Safely exit
 		void Exit();
 
-
-		unsigned int GetShaderProgram();
-		OpenGL::Shader GetShader();
 		Rendering::Window GetWindow();
-
-
+		OpenGL::Projection GetProjection();
+		DimitriEngine::Camera GetCamera();
 
 	private:
 		// Create a new window
 		void CreateWindow();
-		void CreateShaders();
 
 
 
@@ -47,7 +46,9 @@ namespace OpenGL {
 		// Attached window object
 		Rendering::Window window;
 
-		// These should not be exposed in any way to the user
-		Shader shader;
+
+		Projection projection;
+
+		DimitriEngine::Camera camera;
 	};
 }

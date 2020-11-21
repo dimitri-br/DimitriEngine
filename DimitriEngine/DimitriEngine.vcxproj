@@ -105,7 +105,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\lib-vc2019;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\assimp\vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;assimp-vc142-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -141,7 +141,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\glfw-3.3.2.bin.WIN64\glfw-3.3.2.bin.WIN64\lib-vc2019;C:\Users\bobko\OneDrive\Documents\Visual Studio 2019\Libraries\assimp\vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;assimp-vc142-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -152,6 +152,7 @@
     <ClCompile Include="Renderer\Light\Light.cpp" />
     <ClCompile Include="Renderer\Material\Material.cpp" />
     <ClCompile Include="Renderer\Mesh\Mesh.cpp" />
+    <ClCompile Include="Renderer\Model\Model.cpp" />
     <ClCompile Include="Renderer\Object\object.cpp" />
     <ClCompile Include="Renderer\OpenGL\glad.c" />
     <ClCompile Include="Renderer\OpenGL\OpenGLRenderer.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Renderer\Light\Light.h" />
     <ClInclude Include="Renderer\Material\Material.h" />
     <ClInclude Include="Renderer\Mesh\Mesh.h" />
+    <ClInclude Include="Renderer\Model\Model.h" />
     <ClInclude Include="Renderer\Object\object.h" />
     <ClInclude Include="Renderer\OpenGL\OpenGLRenderer.h" />
     <ClInclude Include="Renderer\OpenGL\projection.h" />

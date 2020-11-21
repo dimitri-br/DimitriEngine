@@ -5,17 +5,78 @@
 
 DimitriEngine::Material::Material()
 {
-	std::cout << "Please make sure to manually assign texture paths!";
+	//std::cout << "Please make sure to assign textures and color!" << std::endl;
+}
+
+DimitriEngine::Material::Material(std::vector<Texture> _textures)
+{
+	for (Texture tex : textures) {
+		if (!tex.textureIsLoaded) {
+			std::cout << "Loading texture: " << tex.path << std::endl;
+			LoadImage(tex.path, tex.texture);
+			tex.textureIsLoaded = true;
+		}
+		else {
+			std::cout << "Texture is loaded\nPath: " << tex.path << "\nName: " << tex.name << std::endl;
+		}
+	}
+	this->textures = textures;
+	shader.LoadShader("./Shaders/shader.vert", "./Shaders/shader.frag");
+
 }
 
 DimitriEngine::Material::Material(std::vector<Texture> textures, glm::vec3 _color)
 {
-	
-	color = _color;
-
 	for (Texture tex : textures) {
-		LoadImage(tex.path, tex.texture);
+		if (!tex.textureIsLoaded) {
+			std::cout << "Loading texture: " << tex.path << std::endl;
+			LoadImage(tex.path, tex.texture);
+			tex.textureIsLoaded = true;
+		}
+		else {
+			std::cout << "Texture is loaded\nPath: " << tex.path << "\nName: " << tex.name << std::endl;
+		}
 	}
+	this->textures = textures;
+	this->color = color;
+	shader.LoadShader("./Shaders/shader.vert", "./Shaders/shader.frag");
+}
+
+DimitriEngine::Material::Material(std::vector<Texture> _textures, float smoothness, float metallic)
+{
+	for (Texture tex : textures) {
+		if (!tex.textureIsLoaded) {
+			std::cout << "Loading texture: " << tex.path << std::endl;
+			LoadImage(tex.path, tex.texture);
+			tex.textureIsLoaded = true;
+		}
+		else {
+			std::cout << "Texture is loaded\nPath: " << tex.path << "\nName: " << tex.name << std::endl;
+		}
+	}
+	this->textures = textures;
+	this->smoothness = smoothness;
+	this->metallic = metallic;
+	shader.LoadShader("./Shaders/shader.vert", "./Shaders/shader.frag");
+}
+
+DimitriEngine::Material::Material(std::vector<Texture> _textures, glm::vec3 _color, float smoothness, float metallic)
+{
+	for (Texture tex : textures) {
+		if (!tex.textureIsLoaded) {
+			std::cout << "Loading texture: " << tex.path << std::endl;
+			LoadImage(tex.path, tex.texture);
+			tex.textureIsLoaded = true;
+		}
+		else {
+			std::cout << "Texture is loaded\nPath: " << tex.path << "\nName: " << tex.name << std::endl;
+		}
+	}
+	this->textures = textures;
+	this->color = color;
+	this->smoothness = smoothness;
+	this->metallic = metallic;
+	shader.LoadShader("./Shaders/shader.vert", "./Shaders/shader.frag");
 }
 
 unsigned int DimitriEngine::Material::LoadImage(std::string& path, unsigned int texture)
@@ -38,9 +99,11 @@ unsigned int DimitriEngine::Material::LoadImage(std::string& path, unsigned int 
 	}
 	else
 	{
-		std::cout << "Failed to load texture" << std::endl;
+		std::cout << "Failed to load texture: " << path << " . Please ensure you have supplied a valid path" << std::endl;
+
 	}
 	stbi_image_free(data);
 
 	return texture;
 }
+

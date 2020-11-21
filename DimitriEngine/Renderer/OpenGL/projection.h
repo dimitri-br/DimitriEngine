@@ -1,24 +1,22 @@
 #pragma once
-#include "OpenGLRenderer.h"
-
 // OpenGL math library
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+
 namespace OpenGL {
 	class Projection {
 	private:
-		glm::mat4 projection;
-		glm::mat4 view;
-		glm::mat4 model;
-
-		OpenGLRenderer openGLRenderer;
 
 	public:
 
 		Projection();
 
-		void Initialize(OpenGLRenderer _openGLRenderer);
+		glm::mat4 projection;
+		glm::mat4 view;
+		glm::mat4 model;
+
 
 		void UpdateView(glm::vec3 newPos);
 

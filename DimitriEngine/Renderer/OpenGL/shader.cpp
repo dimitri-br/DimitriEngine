@@ -23,6 +23,8 @@ void OpenGL::Shader::LoadShader(std::string VertPath, std::string FragPath)
     FragShaderSource = buffer;
 
     printf("Successfully loaded shaders!\n");
+
+    GenerateShader();
 }
 
 void OpenGL::Shader::GenerateShader()
@@ -76,4 +78,6 @@ void OpenGL::Shader::GenerateShader()
 
     glDeleteShader(VertShader);
     glDeleteShader(FragShader);
+
+    std::cout << "Successfully generated shader!" << std::endl;
 }

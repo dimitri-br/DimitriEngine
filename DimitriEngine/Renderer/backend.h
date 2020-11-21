@@ -1,6 +1,9 @@
 #pragma once
 
 #include "BackEndType.h"
+#include "Mesh/Mesh.h"
+#include "Texture/Texture.h"
+#include "Material/Material.h"
 #include "OpenGL/OpenGLRenderer.h"
 #include "InputSystem/InputSystem.h"
 #include "Object/object.h"
@@ -13,6 +16,8 @@
 
 
 using OpenGL::OpenGLRenderer;
+using DimitriEngine::Texture;
+using DimitriEngine::Mesh;
 
 // namespace Rendering holds all render processes that are global to every renderer
 namespace Rendering {

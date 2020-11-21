@@ -2,9 +2,12 @@
 
 #include "../OpenGL/OpenGLRenderer.h";
 #include "../backend.h"
+#include "../Mesh/Mesh.h"
+#include "../Model/Model.h"
 #include "../Transform/Transform.h"
 #include "../Material/Material.h"
 #include "../Texture/Texture.h"
+#include "../Camera/Camera.h"
 #include <vector>
 
 // OpenGL math library
@@ -27,40 +30,21 @@ namespace DimitriEngine {
 	public:
 
 		Transform transform;
-		Material material;
+		Model model;
 
 		Object();
 		Object(OpenGLRenderer _openGLRenderer, Rendering::BackEndType _type);
 
 		// Function to build the object by allocating the buffers and arrays
-		void BuildObject();
+		void CreateModel(std::string path, Material modelMaterial);
 
-		// Function to bind a vertex buffer to the object
-		void BindVerticies(std::vector<float> verticesVec);
-
-		// Function to bind an index vector to the object
-		void BindIndicies(std::vector<unsigned int> indicesVec, bool useIndexBuffer);
-
-		// Function to draw this object to the display
-		void Draw();
+		void Update(Camera* cam, std::vector<Light> lights, Projection* projection);
 
 		void Exit();
 
 	private:
-		unsigned int VBO; // Vertex buffer object
-		unsigned int VAO; // Vertex array object - just a pointer really to VBO
-		unsigned int EBO; // Index buffer object
-
-		unsigned int AlbedoTexture; // Albedo texture
-
-		bool UseIndexBuffer;
-
 		BackEndType type; // Type of renderer
-		OpenGLRenderer openGLRenderer; // Link to OpenGL renderer
-
-		std::vector<float> vertices; // vertex vector
-		std::vector<unsigned int> indices; // index vector
-		
+		OpenGLRenderer openGLRenderer; // Link to OpenGL renderer		
 	};
 }
 

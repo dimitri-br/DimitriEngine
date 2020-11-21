@@ -46,9 +46,6 @@
     <Filter Include="Source Files\Renderer\Timing">
       <UniqueIdentifier>{dda75543-a9f2-4486-85b9-4140212c1855}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Renderer\Timing">
-      <UniqueIdentifier>{78ec4f07-9197-4cb8-970f-cc43313b2a02}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Renderer\Object">
       <UniqueIdentifier>{0be9c781-52fc-470c-a37e-b40e02bb932d}</UniqueIdentifier>
     </Filter>
@@ -78,6 +75,15 @@
     </Filter>
     <Filter Include="Source Files\Renderer\Texture">
       <UniqueIdentifier>{5e914048-6467-41ee-8621-6075a79592c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Renderer\Model">
+      <UniqueIdentifier>{841922e4-1f6d-4f03-8c46-e363ec872640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer\Model">
+      <UniqueIdentifier>{46dbacdd-9073-44c3-b6f8-a0ab366c89ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Renderer\Timing">
+      <UniqueIdentifier>{78ec4f07-9197-4cb8-970f-cc43313b2a02}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +135,9 @@
     <ClCompile Include="Renderer\Texture\Texture.cpp">
       <Filter>Source Files\Renderer\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer\Model\Model.cpp">
+      <Filter>Source Files\Renderer\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer\backend.h">
@@ -175,6 +184,9 @@
     </ClInclude>
     <ClInclude Include="Renderer\Texture\Texture.h">
       <Filter>Header Files\Renderer\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer\Model\Model.h">
+      <Filter>Header Files\Renderer\Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

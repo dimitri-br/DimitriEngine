@@ -9,6 +9,8 @@
 #include <glm/glm.hpp>
 #include <chrono>
 
+
+
 namespace Rendering {
 	// Function to resize the window at runtime
 	static void framebuffer_size_callback(GLFWwindow* window, int width, int height)

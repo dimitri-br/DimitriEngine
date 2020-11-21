@@ -18,9 +18,10 @@ namespace DimitriEngine {
 
 
 		glm::mat4 CamView;
+		glm::vec3 CamPosition;
+
 
 	private:
-		glm::vec3 CamPosition;
 		glm::vec3 CamDirection;
 
 		glm::vec3 CamUp = glm::vec3(0.0f, 1.0f, 0.0f);

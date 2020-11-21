@@ -1,11 +1,23 @@
 #pragma once
-#include "../backend.h"
+#include "../window.h"
+#include "../OpenGL/shader.h"
+
 
 namespace DimitriEngine {
-    struct Texture {
-        Texture();
+	struct Texture {
+		Texture(std::string path, std::string name);
 
-        unsigned int texture;
-        std::string path;
-    };
+		Texture();
+
+		void BindTexture(OpenGL::Shader shader, int pos);
+
+		unsigned int texture;
+		std::string path;
+		std::string name;
+
+		bool textureIsLoaded = false;
+
+		void LoadImageFromFile(std::string& path); // Load an image, allocate it and return it.
+
+	};
 }
