@@ -5,15 +5,15 @@ DimitriEngine::Object::Object()
 {
 }
 
-DimitriEngine::Object::Object(OpenGLRenderer _openGLRenderer, Rendering::BackEndType _type)
-{
-	openGLRenderer = _openGLRenderer;
-	type = _type;
-}
 
 void DimitriEngine::Object::CreateModel(std::string path, Material modelMaterial)
 {
 	this->model = Model(path, modelMaterial);
+}
+
+void DimitriEngine::Object::Update(Camera* cam, std::vector<Light> lights, Projection* projection, std::vector<glm::vec3> pos)
+{
+	model.DrawMultiple(transform, cam, lights, projection, pos);
 }
 
 void DimitriEngine::Object::Update(Camera* cam, std::vector<Light> lights, Projection* projection)

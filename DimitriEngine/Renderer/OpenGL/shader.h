@@ -79,7 +79,5 @@ namespace OpenGL {
 
 		unsigned int VertShader;
 		unsigned int FragShader;
-
-		
 	};
 }

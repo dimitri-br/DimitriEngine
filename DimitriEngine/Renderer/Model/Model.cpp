@@ -6,6 +6,14 @@ void DimitriEngine::Model::Draw(Transform transform, std::vector<Light> lights, 
         meshes[i].Draw(transform, cam, lights, projection);
 }
 
+void DimitriEngine::Model::DrawMultiple(Transform transform, Camera* cam, std::vector<Light> lights, Projection* proj, vector<glm::vec3> pos) {
+    for (unsigned int i = 0; i < meshes.size(); i++)
+        for (glm::vec3 p : pos) {
+            transform.position = p;
+            meshes[i].DrawMultiple(transform, cam, lights, proj, pos);
+        }
+}
+
 void DimitriEngine::Model::Exit()
 {
     for (Mesh mesh : meshes) {
@@ -88,6 +96,7 @@ DimitriEngine::Mesh DimitriEngine::Model::processMesh(aiMesh* mesh, const aiScen
     if (mesh->mMaterialIndex >= 0)
     {
         aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+
         vector<Texture> diffuseMaps = loadMaterialTextures(material,
             aiTextureType_DIFFUSE, "material.texture_diffuse");
         textures.insert(textures.end(), diffuseMaps.begin(), diffuseMaps.end());
@@ -96,6 +105,7 @@ DimitriEngine::Mesh DimitriEngine::Model::processMesh(aiMesh* mesh, const aiScen
         textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
     }
     Material mat = Material(textures, glm::vec3(1.0f, 1.0f, 1.0f));
+    
     // Use the user defined material if it overrides any of the textures
     if (material.textures.size() > 0) {
         
@@ -135,6 +145,7 @@ vector<DimitriEngine::Texture> DimitriEngine::Model::loadMaterialTextures(aiMate
             texture.name = typeName;
             texture.path = str.C_Str();
             texture.LoadImageFromFile(std::string("./models/backpack/").append(texture.path));
+            //texture.LoadImageFromFile(std::string("").append(texture.path));
             textures.push_back(texture);
             textures_loaded.push_back(texture); // add to loaded textures
         }

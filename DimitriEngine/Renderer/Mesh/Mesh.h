@@ -35,6 +35,7 @@ namespace DimitriEngine {
 		Material				  material;
 		Mesh();
 		Mesh(vector<Vertex> vertices, vector<unsigned int> indices, Material material);
+		void DrawMultiple(Transform transform, Camera* cam, std::vector<Light> lights, Projection* proj, vector<glm::vec3> pos);
 		void Draw(Transform transform, Camera* cam, std::vector<Light> lights, Projection* proj);
 		void Exit();
 

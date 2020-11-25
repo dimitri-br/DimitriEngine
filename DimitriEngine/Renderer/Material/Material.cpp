@@ -34,7 +34,7 @@ DimitriEngine::Material::Material(std::vector<Texture> textures, glm::vec3 _colo
 			tex.textureIsLoaded = true;
 		}
 		else {
-			std::cout << "Texture is loaded\nPath: " << tex.path << "\nName: " << tex.name << std::endl;
+			std::cout << "Texture is loaded\nPath: " << tex.path << "\nName: " << tex.name << "\n";
 		}
 	}
 	this->textures = textures;

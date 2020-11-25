@@ -8,7 +8,7 @@ DimitriEngine::Texture::Texture(std::string path, std::string name)
 {
 	this->path = path;
 	this->name = name;
-	std::cout << "Loading texture: " << path << std::endl;
+	std::cout << "Loading texture: " << path << "\n\n";
 
 }
 

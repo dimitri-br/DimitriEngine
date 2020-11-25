@@ -1,6 +1,8 @@
 #include "OpenGLRenderer.h"
 #include "../Timing/Time.h"
 
+#define USE_MSAA true
+
 using DimitriEngine::Time;
 
 
@@ -25,9 +27,16 @@ void OpenGL::OpenGLRenderer::CreateWindow()
 
 
 void OpenGL::OpenGLRenderer::Update() {
+#if USE_MSAA
+	glEnable(GL_MULTISAMPLE);
+#endif // USE_MSAA
 
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
+}
+
+void OpenGL::OpenGLRenderer::SwapBuffers() {
 	window.SwapWindowBuffers();
-	glClear(GL_COLOR_BUFFER_BIT);
 }
 
 void OpenGL::OpenGLRenderer::Exit() {

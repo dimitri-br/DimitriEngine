@@ -19,6 +19,8 @@ namespace DimitriEngine {
 		}
 		void Draw(Transform transform, std::vector<Light> lights, Camera* cam, Projection* projection);
 
+		void DrawMultiple(Transform transform, Camera* cam, std::vector<Light> lights, Projection* proj, vector<glm::vec3> pos);
+
 		void Exit();
 
 

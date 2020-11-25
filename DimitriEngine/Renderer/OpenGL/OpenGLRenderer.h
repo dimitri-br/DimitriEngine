@@ -29,6 +29,8 @@ namespace OpenGL {
 		// Update the renderer - including windows, shaders etc
 		void Update();
 
+		void SwapBuffers();
+
 		//Safely exit
 		void Exit();
 

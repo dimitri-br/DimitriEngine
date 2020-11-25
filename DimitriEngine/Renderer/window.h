@@ -9,14 +9,13 @@
 #include <glm/glm.hpp>
 #include <chrono>
 
-
+#define WIDTH 800
+#define HEIGHT 600
 
 namespace Rendering {
 	// Function to resize the window at runtime
-	static void framebuffer_size_callback(GLFWwindow* window, int width, int height)
-	{
-		glViewport(0, 0, width, height);
-	}
+	static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+
 
 	static void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 
@@ -58,6 +57,8 @@ namespace Rendering {
 		glm::vec2 GetMousePos();
 
 		void mouseCallback(GLFWwindow* window, double xpos, double ypos);
+
+		glm::vec2 dimensions;
 	private:
 		GLFWwindow* window;
 

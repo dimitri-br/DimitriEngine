@@ -33,18 +33,16 @@ namespace DimitriEngine {
 		Model model;
 
 		Object();
-		Object(OpenGLRenderer _openGLRenderer, Rendering::BackEndType _type);
 
 		// Function to build the object by allocating the buffers and arrays
 		void CreateModel(std::string path, Material modelMaterial);
 
+		void Update(Camera* cam, std::vector<Light> lights, Projection* projection, std::vector<glm::vec3> pos);
 		void Update(Camera* cam, std::vector<Light> lights, Projection* projection);
 
 		void Exit();
 
-	private:
-		BackEndType type; // Type of renderer
-		OpenGLRenderer openGLRenderer; // Link to OpenGL renderer		
+	private:	
 	};
 }
 

@@ -11,6 +11,7 @@
 #include "Camera/Camera.h"
 #include "Timing/Time.h"
 #include "Light/Light.h"
+#include "OpenGL/PostProcessing.h"
 
 #include <chrono>
 

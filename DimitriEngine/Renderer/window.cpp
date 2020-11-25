@@ -15,11 +15,14 @@ void Rendering::Window::LoadOpenGL(){
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+	//MSAA
+	glfwWindowHint(GLFW_SAMPLES, 4);
+
 #ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-	window = glfwCreateWindow(800, 600, "DimitriEngine - OpenGL", NULL, NULL);
+	window = glfwCreateWindow(WIDTH, HEIGHT, "DimitriEngine - OpenGL", NULL, NULL);
 	if (window == NULL)
 	{
 		glfwTerminate();
@@ -53,6 +56,7 @@ GLFWwindow* Rendering::Window::GetWindow() {
 
 int Rendering::Window::CheckKey(int keycode) {
 	return glfwGetKey(window, keycode);
+	return 0;
 }
 void Rendering::Window::Exit() {
 	glfwDestroyWindow(window);
@@ -80,6 +84,13 @@ void Rendering::Window::CloseWindow(bool value) {
 void Rendering::Window::SetClearColor(float r, float g, float b, float a) {
 	glClearColor(r, g, b, a);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void Rendering::framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+	glViewport(0, 0, width, height);
+	Window* app = (Window*)glfwGetWindowUserPointer(window);
+	app->dimensions = glm::vec2(width, height);
 }
 
 void Rendering::mouse_callback(GLFWwindow* window, double xpos, double ypos)

@@ -23,11 +23,10 @@ void DimitriEngine::Camera::Update()
 //Basic camera controller
 void DimitriEngine::Camera::HandleInput(InputSystem inputSystem)
 {
-	const float cameraSpeed = 2.5f * Time::GetInstance()->deltaTime; // adjust accordingly
+	const float cameraSpeed = 25.0f * Time::GetInstance()->deltaTime; // adjust accordingly
 	if (inputSystem.GetKeyDown(GLFW_KEY_W)) {
 		CamPosition += cameraSpeed * CamFront;
 	}
-
 	if (inputSystem.GetKeyDown(GLFW_KEY_S)) {
 		CamPosition -= cameraSpeed * CamFront;
 	}
@@ -55,7 +54,7 @@ void DimitriEngine::Camera::HandleInput(InputSystem inputSystem)
     lastX = xpos;
     lastY = ypos;
 
-    float sensitivity = 2.0f * Time::GetInstance()->deltaTime;
+    float sensitivity = 0.1f;
     xoffset *= sensitivity;
     yoffset *= sensitivity;
 

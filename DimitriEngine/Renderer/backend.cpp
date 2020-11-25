@@ -87,12 +87,12 @@ Rendering::BackEnd::BackEnd()
 void BackEnd::MainLoop() {
 	OpenGL::Projection projection = openGLRenderer.GetProjection();
 	std::vector<DimitriEngine::Light> lights;
+	std::vector<DimitriEngine::Object> objs;
 
-	DimitriEngine::Object obj(openGLRenderer, backEndType);
 	
 	DimitriEngine::Light light = DimitriEngine::Light();
-	light.direction = glm::vec3(-0.2f, -1.0f, -0.3f);
-	light.ambient = glm::vec3(1.0f);
+	light.direction = glm::vec3(-0.0f, -1.0f, -0.3f);
+	light.ambient = glm::vec3(0.1f);
 	light.diffuse = glm::vec3(0.8f);
 	light.specular = glm::vec3(1.0f);
 	light.lightType = LIGHT_DIRECTIONAL;
@@ -100,18 +100,25 @@ void BackEnd::MainLoop() {
 
 
 	glm::vec3 pointLightPositions[] = {
-		glm::vec3(0.7f,  0.2f,  2.0f),
+		glm::vec3(0.7f,  -0.5f,  5.0f),
 		glm::vec3(2.3f, -3.3f, -4.0f),
-		glm::vec3(-4.0f,  2.0f, -12.0f),
-		glm::vec3(0.0f,  0.0f, -3.0f)
+		glm::vec3(-4.0f,  -2.0f, -12.0f),
+		glm::vec3(0.0f,  -6.0f, -3.0f)
+	};
+
+	std::vector<glm::vec3> objPositions = {
+	glm::vec3(1.0f,  0.5f,  5.0f),
+	glm::vec3(2.3f, 2.0f, -4.0f),
+	glm::vec3(-4.0f,  2.0f, -5.0f),
+	glm::vec3(0.25f,  0.0f, -3.0f)
 	};
 
 	for (glm::vec3 pos : pointLightPositions) {
 		DimitriEngine::Light p_light;
 		p_light.position = pos;
 		
-		p_light.ambient = glm::vec3(1.0f);
-		p_light.diffuse = glm::vec3(0.8f);
+		p_light.ambient = glm::vec3(0.1f);
+		p_light.diffuse = glm::vec3(1.0f);
 		p_light.specular = glm::vec3(1.0f);
 
 		p_light.constant = 1.0f;
@@ -122,29 +129,58 @@ void BackEnd::MainLoop() {
 
 		lights.push_back(p_light);
 	}
-	obj.transform.position = glm::vec3(0.0f, 0.0f, -5.0f);
-	obj.transform.rotation = glm::vec3(0, 20, 0);
+
+	/*for (glm::vec3 pos : objPositions) {
+		DimitriEngine::Object obj;
+		obj.transform.position = pos;
+		obj.transform.rotation = glm::vec3(1, 0, 0);
+		obj.transform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
+
+		Material mat;
+		//mat.color = glm::vec3(1.0, 1.0, 1.0);
+		//mat.smoothness = 32.0f;
+		obj.CreateModel("./Models/backpack/backpack.obj", mat);
+
+		objs.push_back(obj);
+	}*/
+	DimitriEngine::Object obj;
+	obj.transform.position = glm::vec3(0);
+	obj.transform.rotation = glm::vec3(1, 0, 0);
 	obj.transform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
 
 	Material mat;
 	//mat.color = glm::vec3(1.0, 1.0, 1.0);
-	mat.smoothness = 32.0f;
+	//mat.smoothness = 32.0f;
 	obj.CreateModel("./Models/backpack/backpack.obj", mat);
+
 
 	openGLRenderer.GetWindow().SetClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
+
+	OpenGL::PostProcessing pps;
+	
+
 	while (!openGLRenderer.GetWindow().CheckClose()) {
+
+
+		// Now draw the scene
+
 		float nowTime = glfwGetTime();
 
-
+		pps.PreRender();
 
 		openGLRenderer.Update();
+		openGLRenderer.GetWindow().SetClearColor(0.1, 0.1, 0.1, 1);
 		inputSystem.SetWindow(openGLRenderer.GetWindow());
 		inputSystem.ProcessInputs();
 		camera.HandleInput(inputSystem);
 		camera.Update();
 		projection.SetRawView(camera.CamView);
 		
+		//for (DimitriEngine::Object obj : objs) {
+
+		//	obj.Update(&camera, lights, &projection);
+		//}
 		obj.Update(&camera, lights, &projection);
 
 		glfwPollEvents();
@@ -156,7 +192,16 @@ void BackEnd::MainLoop() {
 		DeltaTime = endTime - nowTime;
 
 		Time::GetInstance()->deltaTime = DeltaTime;
+
+		
+
+		pps.Draw();
+
+		openGLRenderer.SwapBuffers();
 	}
 
-	obj.Exit();
+	for (DimitriEngine::Object obj : objs) {
+
+		obj.Exit();
+	}
 }

@@ -14,7 +14,8 @@ void DimitriEngine::InputSystem::ProcessInputs()
 
 bool DimitriEngine::InputSystem::GetKeyDown(int KeyCode) {
 
-	if (window.CheckKey(KeyCode) == GLFW_PRESS)
+	int keyValue = window.CheckKey(KeyCode);
+	if (keyValue == GLFW_PRESS)
 		return true;
 	else
 		return false;

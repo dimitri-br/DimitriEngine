@@ -13,7 +13,12 @@ DimitriEngine::Mesh::Mesh(vector<Vertex> vertices, vector<unsigned int> indices,
     setupMesh();
 }
 
-
+void DimitriEngine::Mesh::DrawMultiple(Transform transform, Camera* cam, std::vector<Light> lights, Projection* proj, vector<glm::vec3> pos) {
+    for (glm::vec3 p : pos) {
+        transform.position = p;
+        Draw(transform, cam, lights, proj);
+    }
+}
 
 void DimitriEngine::Mesh::Draw(Transform transform, Camera* cam, std::vector<Light> lights, Projection* proj)
 {
@@ -46,6 +51,7 @@ void DimitriEngine::Mesh::Draw(Transform transform, Camera* cam, std::vector<Lig
     // bind the object's transform and camera pos for specular
     material.shader.BindMat4("transform", transform.GetTransform());
     material.shader.BindVec3("viewPos", cam->CamPosition);
+    material.shader.BindBool("useColor", false);
 
 
     // draw mesh
@@ -60,6 +66,7 @@ void DimitriEngine::Mesh::Exit()
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
     glDeleteBuffers(1, &EBO);
+    material.shader.Exit();
 }
 
 void DimitriEngine::Mesh::setupMesh()
@@ -94,5 +101,5 @@ void DimitriEngine::Mesh::setupMesh()
     // reset the binded vertex array
     glBindVertexArray(0);
 
-    std::cout << "\nSetup mesh!\nVerticies: " << vertices.size() << "\nIndicies: " << indices.size() << "\nTextures: " << material.textures.size() << std::endl;
+    std::cout << "Mesh Stats:\nVerticies: " << vertices.size() << "\nIndicies: " << indices.size() << "\nTextures: " << material.textures.size() << std::endl;
 }

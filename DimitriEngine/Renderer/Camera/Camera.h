@@ -37,7 +37,7 @@ namespace DimitriEngine {
 
 		bool firstMouse = true;
 
-		float sensitivity = 0.1f;
+		float sensitivity = 1.0f;
 	};
 }
 

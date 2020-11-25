@@ -22,7 +22,7 @@ void OpenGL::Shader::LoadShader(std::string VertPath, std::string FragPath)
 
     FragShaderSource = buffer;
 
-    printf("Successfully loaded shaders!\n");
+    printf("\n\nSuccessfully loaded shaders!\n");
 
     GenerateShader();
 }
@@ -43,7 +43,10 @@ void OpenGL::Shader::GenerateShader()
     if (!success)
     {
         glGetShaderInfoLog(VertShader, 512, NULL, infoLog);
-        std::exception("Error when creating Vertex Shader");
+        std::cout << "\n==========================ERROR==============================" << std::endl;
+        std::cout << "\nERROR: Error when compiling Vertex Shader.\n" << std::endl;
+        std::cout << infoLog << std::endl;
+        throw 2;
     }
 
     // Load and compile fragment shader
@@ -58,7 +61,11 @@ void OpenGL::Shader::GenerateShader()
     if (!success)
     {
         glGetShaderInfoLog(FragShader, 512, NULL, infoLog);
-        std::exception("Error when creating Fragment Shader");
+        std::cout << "\n==========================ERROR==============================" << std::endl;
+        std::cout << "ERROR: Error when compiling Fragment Shader.\n" << std::endl;
+        std::cout << infoLog << std::endl;
+        throw 2;
+
     }
 
     // Link the shaders into a program
@@ -71,7 +78,10 @@ void OpenGL::Shader::GenerateShader()
     glGetProgramiv(ShaderProgram, GL_LINK_STATUS, &success);
     if (!success) {
         glGetProgramInfoLog(ShaderProgram, 512, NULL, infoLog);
-        std::exception("Error when creating Shader Program");
+        std::cout << "\n==========================ERROR==============================" << std::endl;
+        std::cout << "\nERROR: Error when creating Shader Program\n" << std::endl;
+        std::cout << infoLog << std::endl;
+        throw 2;
     }
 
     glUseProgram(ShaderProgram);
