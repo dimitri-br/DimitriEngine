@@ -1,4 +1,4 @@
-#version 440 core
+#version 330 core
 struct Material
 {
     sampler2D texture_diffuse;
@@ -16,6 +16,8 @@ struct DirLight{
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;
+
+    vec3 color;
 };
 uniform DirLight dirLight;
 
@@ -29,6 +31,8 @@ struct PointLight {
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;
+
+    vec3 color;
 };  
 #define NR_POINT_LIGHTS 4
 uniform PointLight pointLights[NR_POINT_LIGHTS];
@@ -38,7 +42,8 @@ in vec3 Normal;
 
 in vec3 FragPos;
 
-out vec4 FragColor;
+layout (location = 0) out vec4 FragColor;
+layout (location = 1) out vec4 BrightColor;
 
 
 uniform bool useColor;
@@ -61,7 +66,7 @@ vec3 CalcDirLight(DirLight light, vec3 normal, vec3 viewDir)
     }
     vec3 specular = light.specular * spec * ((!useColor) ? vec3(texture(material.texture_specular, TexCoords)) : vec3(1));
     
-    return (ambient + diffuse);// + specular);
+    return (ambient + diffuse + specular);// + specular);
 } 
 
 
@@ -79,8 +84,8 @@ vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
   			     light.quadratic * (distance * distance));   
 
     // combine results
-    vec3 ambient  = light.ambient  * vec3(texture(material.texture_diffuse, TexCoords));
-    vec3 diffuse  = light.diffuse  * diff * vec3(texture(material.texture_diffuse, TexCoords));
+    vec3 ambient  = light.ambient * vec3(texture(material.texture_diffuse, TexCoords));
+    vec3 diffuse  = light.diffuse * diff * vec3(texture(material.texture_diffuse, TexCoords));
     if  (useColor){
         ambient = light.ambient * material.color;
         diffuse = light.diffuse * material.color;
@@ -100,12 +105,18 @@ void main()
     vec3 viewDir = normalize(viewPos - FragPos);
 
     // phase 1: Directional lighting
-    //vec3 result = CalcDirLight(dirLight, norm, viewDir);
-    vec3 result = vec3(0);
+    vec3 result = CalcDirLight(dirLight, norm, viewDir);
+    //vec3 result = vec3(0);
     // phase 2: Point lights
     for(int i = 0; i < NR_POINT_LIGHTS; i++)
        result += CalcPointLight(pointLights[i], norm, FragPos, viewDir); 
-
-    FragColor = vec4((result), 1.0f) * texture(material.texture_diffuse, TexCoords);
+    // check whether result is higher than some threshold, if so, output as bloom threshold color
+    float brightness = dot(result, vec3(0.2126f, 0.7152f, 0.0722f));
+    if(brightness > 1.0f)
+        BrightColor = vec4(result, 1.0f);
+    else
+        BrightColor = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+    FragColor = vec4(result, 1.0f);
+    //FragColor = vec4((result), 1.0f);// * texture(material.texture_diffuse, TexCoords);
    // FragColor = texture(material.texture_diffuse, TexCoords);
 }

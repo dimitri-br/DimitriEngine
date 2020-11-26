@@ -3,6 +3,9 @@
 
 DimitriEngine::Transform::Transform(glm::vec3 position, glm::vec3 rotation, glm::vec3 scale)
 {
+	this->position = position;
+	this->rotation = rotation;
+	this->scale = scale;
 }
 
 glm::mat4 DimitriEngine::Transform::GetTransform()

@@ -1,5 +1,7 @@
 #include "Mesh.h"
 
+#include <random>
+
 DimitriEngine::Mesh::Mesh()
 {
 }
@@ -22,23 +24,47 @@ void DimitriEngine::Mesh::DrawMultiple(Transform transform, Camera* cam, std::ve
 
 void DimitriEngine::Mesh::Draw(Transform transform, Camera* cam, std::vector<Light> lights, Projection* proj)
 {
-    material.shader.UseShader();
     int i = 0;
+    for (Light light : lights) {
+
+        light.DrawLight(material.shader, proj);
+
+    }
+    for (Light light : lights) {
+        light.DrawRenderer(proj);
+
+    }
+
+    int instanceCount = 20;
+    vector<glm::mat4> translations;
+    int index = 0;
+    float offset = 20.0f;
+    for (int y = -20; y < instanceCount; y += 8)
+    {
+        for (int x = -20; x < instanceCount; x += 8)
+        {
+            for (int z = -20; z < instanceCount; z += 8) {
+                glm::mat4 translation;
+                translation = glm::translate(transform.GetTransform(), glm::vec3(x + offset, y + offset, z + offset));
+                translations.push_back(translation);
+            }
+        }
+    }
+
+    //std::cout << "Generated offsets!" << std::endl;
+
+    material.shader.UseShader();
+    i = 0;
+    for (unsigned int i = 0; i < instanceCount; i++)
+    {
+        material.shader.BindMat4(("transforms[" + std::to_string(i) + "]"), translations[i]);
+    }
     for (Texture tex : material.textures) {
         glActiveTexture(GL_TEXTURE0 + i); // active proper texture unit before binding
         tex.BindTexture(material.shader, i);
         i++;
     }
-    i = 0;
-    for (Light light : lights) {
-        if (light.constant == 1.0f) {
-            light.DrawPoint(material.shader, i);
-            i++;
-        }
-        else {
-            light.DrawDirectional(material.shader);
-        }
-    }
+
     // bind non-texture material properties
     material.shader.BindVec3("material.color", material.color);
     material.shader.BindFloat("material.smoothness", material.smoothness);
@@ -56,9 +82,12 @@ void DimitriEngine::Mesh::Draw(Transform transform, Camera* cam, std::vector<Lig
 
     // draw mesh
     glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+    //glDrawArraysInstanced(GL_TRIANGLES, 0, 6, 100);
+    glDrawElementsInstanced(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0, instanceCount);
     glBindVertexArray(0);
     glActiveTexture(GL_TEXTURE0);
+
+
 }
 
 void DimitriEngine::Mesh::Exit()

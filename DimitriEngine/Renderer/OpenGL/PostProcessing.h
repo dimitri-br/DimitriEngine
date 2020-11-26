@@ -13,6 +13,11 @@ namespace OpenGL {
 
 		void Draw();
 
+		void SetupShadowBuffer();
+
+		void DrawShadowMap();
+
+		void ApplyShadowMap();
 
 		void Exit() {
 			// Cleanup
@@ -21,8 +26,8 @@ namespace OpenGL {
 			shader.Exit();
 			glDeleteTextures(1, &framebuffer);
 			glDeleteTextures(1, &textureColorbuffer);
-			glDeleteTextures(1, &intermediateFBO);
-			glDeleteTextures(1, &screenTexture);
+			glDeleteTextures(1, &colorBuffers[1]);
+			glDeleteTextures(1, &colorBuffers[0]);
 			glDeleteTextures(1, &rbo);
 		}
 
@@ -31,17 +36,17 @@ namespace OpenGL {
 		void SetupQuad();
 		void SetupFramebuffers();
 
+
 		Shader shader;
+		Shader shaderBlur;
+		Shader shaderBloom;
 
-		float quadVertices[24] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
-// positions   // texCoords
--1.0f,  1.0f,  0.0f, 1.0f,
--1.0f, -1.0f,  0.0f, 0.0f,
- 1.0f, -1.0f,  1.0f, 0.0f,
-
--1.0f,  1.0f,  0.0f, 1.0f,
- 1.0f, -1.0f,  1.0f, 0.0f,
- 1.0f,  1.0f,  1.0f, 1.0f
+		float quadVertices[20] = {
+			// positions        // texture Coords
+			-1.0f,  1.0f, 0.0f, 0.0f, 1.0f,
+			-1.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+			 1.0f,  1.0f, 0.0f, 1.0f, 1.0f,
+			 1.0f, -1.0f, 0.0f, 1.0f, 0.0f,
 		};
 		unsigned int quadVAO, quadVBO;
 
@@ -51,8 +56,13 @@ namespace OpenGL {
 
 		unsigned int rbo;
 
-		unsigned int intermediateFBO;
-		unsigned int screenTexture;
+		unsigned int colorBuffers[2];
+
+		unsigned int pingpongFBO[2];
+		unsigned int pingpongBuffers[2];
+
+		unsigned int depthMapFBO;
+		unsigned int depthMap;
 
 
 		

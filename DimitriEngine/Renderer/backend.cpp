@@ -89,68 +89,66 @@ void BackEnd::MainLoop() {
 	std::vector<DimitriEngine::Light> lights;
 	std::vector<DimitriEngine::Object> objs;
 
-	
+
 	DimitriEngine::Light light = DimitriEngine::Light();
+	light.position = glm::vec3(0, 7, 35);
 	light.direction = glm::vec3(-0.0f, -1.0f, -0.3f);
-	light.ambient = glm::vec3(0.1f);
-	light.diffuse = glm::vec3(0.8f);
-	light.specular = glm::vec3(1.0f);
+	light.ambient = glm::vec3(0.0f);
+	light.diffuse = glm::vec3(0.8f);// glm::vec3(252, 212, 64);
+	light.specular = glm::vec3(252, 212, 64) / glm::vec3(255);
 	light.lightType = LIGHT_DIRECTIONAL;
+
+	light.constant = 0;
+	light.linear = 0;
+	light.quadratic = 0;
+
+	light.transform = Transform(glm::vec3(0, 10, 37), glm::vec3(0), glm::vec3(1.0f));
+	light.lightColor = glm::vec3(252, 212, 64);
+	light.lightObjectColor = glm::vec3(252, 212, 64);
 	lights.push_back(light);
 
 
 	glm::vec3 pointLightPositions[] = {
-		glm::vec3(0.7f,  -0.5f,  5.0f),
-		glm::vec3(2.3f, -3.3f, -4.0f),
-		glm::vec3(-4.0f,  -2.0f, -12.0f),
-		glm::vec3(0.0f,  -6.0f, -3.0f)
+		glm::vec3(15.4f,  0.2f,  30.0f),
+		glm::vec3(2.3f, 3.3f, -4.0f),
+		glm::vec3(-4.0f,  2.0f, -15.0f),
+		glm::vec3(8.0f,  0.0f, 10.0f)
 	};
 
-	std::vector<glm::vec3> objPositions = {
-	glm::vec3(1.0f,  0.5f,  5.0f),
-	glm::vec3(2.3f, 2.0f, -4.0f),
-	glm::vec3(-4.0f,  2.0f, -5.0f),
-	glm::vec3(0.25f,  0.0f, -3.0f)
+	glm::vec3 lightColors[] = {
+		glm::vec3(0, 2, 0),
+		glm::vec3(2, 2, 0),
+		glm::vec3(0, 2, 2),
+		glm::vec3(2, 0, 2)
 	};
 
+	int i = 0;
 	for (glm::vec3 pos : pointLightPositions) {
-		DimitriEngine::Light p_light;
+		std::cout << "Generating point light!" << std::endl;
+		DimitriEngine::Light p_light(LIGHT_POINT, Transform(pos, glm::vec3(0), glm::vec3(0.2f)), lightColors[i], lightColors[i]);
 		p_light.position = pos;
 		
-		p_light.ambient = glm::vec3(0.1f);
-		p_light.diffuse = glm::vec3(1.0f);
-		p_light.specular = glm::vec3(1.0f);
+		p_light.ambient = glm::vec3(.1f);
+		p_light.diffuse = lightColors[i];
+		p_light.specular = lightColors[i];
 
-		p_light.constant = 1.0f;
+		p_light.constant = 2.0f;
 		p_light.linear = 0.09f;
 		p_light.quadratic = 0.032f;
-
-		light.lightType = LIGHT_POINT;
-
+		p_light.lightID = i;
+		i++;
 		lights.push_back(p_light);
 	}
+	
 
-	/*for (glm::vec3 pos : objPositions) {
-		DimitriEngine::Object obj;
-		obj.transform.position = pos;
-		obj.transform.rotation = glm::vec3(1, 0, 0);
-		obj.transform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
-
-		Material mat;
-		//mat.color = glm::vec3(1.0, 1.0, 1.0);
-		//mat.smoothness = 32.0f;
-		obj.CreateModel("./Models/backpack/backpack.obj", mat);
-
-		objs.push_back(obj);
-	}*/
 	DimitriEngine::Object obj;
 	obj.transform.position = glm::vec3(0);
 	obj.transform.rotation = glm::vec3(1, 0, 0);
 	obj.transform.scale = glm::vec3(1.0f, 1.0f, 1.0f);
 
 	Material mat;
-	//mat.color = glm::vec3(1.0, 1.0, 1.0);
-	//mat.smoothness = 32.0f;
+	mat.smoothness = 32.0f;
+
 	obj.CreateModel("./Models/backpack/backpack.obj", mat);
 
 
@@ -159,6 +157,7 @@ void BackEnd::MainLoop() {
 
 	OpenGL::PostProcessing pps;
 	
+	//pps.SetupShadowBuffer();
 
 	while (!openGLRenderer.GetWindow().CheckClose()) {
 
@@ -170,7 +169,7 @@ void BackEnd::MainLoop() {
 		pps.PreRender();
 
 		openGLRenderer.Update();
-		openGLRenderer.GetWindow().SetClearColor(0.1, 0.1, 0.1, 1);
+		openGLRenderer.GetWindow().SetClearColor(0.0, 0.0, 0.0, 1);
 		inputSystem.SetWindow(openGLRenderer.GetWindow());
 		inputSystem.ProcessInputs();
 		camera.HandleInput(inputSystem);
@@ -181,7 +180,9 @@ void BackEnd::MainLoop() {
 
 		//	obj.Update(&camera, lights, &projection);
 		//}
+		//pps.DrawShadowMap();
 		obj.Update(&camera, lights, &projection);
+		//pps.ApplyShadowMap();
 
 		glfwPollEvents();
 
